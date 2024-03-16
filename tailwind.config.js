@@ -6,6 +6,7 @@ export default {
       colors: {
         'gray-25': '#FCFCFD',
         'gray-50': '#F9FAFB',
+        'gray-75': '#F6F6F7',
         'gray-100': '#F2F4F7',
         'gray-200': '#EAECF0',
         'gray-300': '#D0D5DD',
@@ -17,6 +18,13 @@ export default {
         'gray-900': '#101828',
         'orange-500': '#FF5613',
         'purple-500': '#4B69FD'
+      },
+      screens: {
+        xs: '430px',
+        xl: '1440px'
+      },
+      spacing: {
+        368: '23rem'
       }
     },
     fontFamily: {
