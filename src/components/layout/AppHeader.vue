@@ -68,7 +68,7 @@ export default {
     </div>
 
     <!-- menu offcanvas -->
-    <div class="absolute top-0 left-0 w-80 p-6 bg-white">
+    <div class="hidden absolute top-0 left-0 w-80 p-6 bg-white">
       <div class="border-b border-gray-300 flex items-center justify-between w-full pb-5">
         <LogoIcon />
         <div>

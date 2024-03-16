@@ -25,14 +25,14 @@ export default {
       },
       spacing: {
         368: '23rem'
+      },
+      fontFamily: {
+        inter: ['Inter'],
+        raleway: ['Raleway']
+      },
+      fontSize: {
+        '6xl': '3.75rem'
       }
-    },
-    fontFamily: {
-      inter: ['Inter'],
-      raleway: ['Raleway']
-    },
-    fontSize: {
-      '6xl': '3.75rem'
     }
   },
   plugins: []
