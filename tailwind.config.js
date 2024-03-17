@@ -15,6 +15,7 @@ export default {
         'gray-600': '#475467',
         'gray-700': '#344054',
         'gray-800': '#1D2939',
+        'gray-850': '#808080',
         'gray-900': '#101828',
         'orange-500': '#FF5613',
         'purple-500': '#4B69FD'
@@ -24,7 +25,11 @@ export default {
         xl: '1440px'
       },
       spacing: {
-        368: '23rem'
+        368: '23rem',
+        74: '4.625rem',
+        220: '13.75rem',
+        464: '29rem',
+        936: '58.5rem'
       },
       fontFamily: {
         inter: ['Inter'],
@@ -32,6 +37,9 @@ export default {
       },
       fontSize: {
         '6xl': '3.75rem'
+      },
+      lineHeight: {
+        'leading-13': '55px'
       }
     }
   },
