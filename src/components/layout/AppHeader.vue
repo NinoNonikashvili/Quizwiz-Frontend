@@ -21,7 +21,9 @@ export default {
 </script>
 
 <template>
-  <header class="bg-white px-4 py-6 xl:px-24 flex justify-between items-center">
+  <header
+    class="bg-white px-4 py-6 xl:px-24 flex justify-between items-center border-b border-gray-300"
+  >
     <div class="flex items-center gap-11">
       <!-- Logo -->
       <LogoIcon />
