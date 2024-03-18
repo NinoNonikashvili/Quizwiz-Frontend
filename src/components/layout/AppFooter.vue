@@ -10,9 +10,9 @@ export default {
 </script>
 
 <template>
-  <footer class="mt-96">
+  <footer class="py-6">
     <div class="px-10 py-6 flex flex-col xl:flex-row xl:gap-28 items-start">
-      <div class="border-b border-gray-300 pb-6 xl:border-b-0 w-full">
+      <div class="border-b border-gray-300 pb-6 xl:border-b-0 w-full xl:w-fit">
         <LogoIcon />
       </div>
       <ul class="py-6 xl:py-0 flex flex-col gap-10 xl:flex-row xl:gap-24">

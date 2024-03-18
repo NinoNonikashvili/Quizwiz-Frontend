@@ -3,17 +3,18 @@ import BurgerIcon from '../icons/BurgerIcon.vue'
 import LogoIcon from '../icons/LogoIcon.vue'
 import UserIcon from '../icons/UserIcon.vue'
 import SearchInput from '../form/SearchInput.vue'
-import LogoutIcon from '../icons/LogoutIcon.vue'
+// import LogoutIcon from '../icons/LogoutIcon.vue'
 import CrossIcon from '../icons/CrossIcon.vue'
 
 export default {
+  props: ['isHome'],
   name: 'AppHeader',
   components: {
     BurgerIcon,
     LogoIcon,
     UserIcon,
     SearchInput,
-    LogoutIcon,
+    // LogoutIcon,
     CrossIcon
   }
 }
@@ -34,7 +35,7 @@ export default {
     </div>
     <div class="w-fit flex gap-5 xl:gap-8 items-center">
       <!-- search -->
-      <div>
+      <div :class="{ hidden: isHome }">
         <SearchInput />
       </div>
       <!-- burger menu -->
@@ -114,7 +115,7 @@ export default {
       </div>
     </div>
     <!-- logout offcanvas -->
-    <div
+    <!-- <div
       class="absolute top-5 right-24 w-80 h-40 px-4 py-8 flex flex-col justify-between bg-white border border-gray-300 rounded-lg"
     >
       <img
@@ -131,6 +132,6 @@ export default {
           <LogoutIcon />
         </a>
       </div>
-    </div>
+    </div> -->
   </header>
 </template>
