@@ -18,7 +18,8 @@ export default {
         'gray-850': '#808080',
         'gray-900': '#101828',
         'orange-500': '#FF5613',
-        'purple-500': '#4B69FD'
+        'purple-500': '#4B69FD',
+        'green-100': '#D1FADF'
       },
       screens: {
         xs: '430px',
@@ -29,7 +30,9 @@ export default {
         74: '4.625rem',
         220: '13.75rem',
         464: '29rem',
-        936: '58.5rem'
+        936: '58.5rem',
+        394: '24.625rem',
+        512: '32rem'
       },
       fontFamily: {
         inter: ['Inter'],
