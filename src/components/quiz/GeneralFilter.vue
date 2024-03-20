@@ -8,6 +8,7 @@ import NewestIcon from '../icons/NewestIcon.vue'
 import OldestIcon from '../icons/OldestIcon.vue'
 import PopularIcon from '../icons/PopularIcon.vue'
 import GreenSelectedIcon from '../icons/GreenSelectedIcon.vue'
+import FilterIcon from '../icons/FilterIcon.vue'
 
 export default {
   data() {
@@ -52,26 +53,7 @@ export default {
           bg_dark: 'bg-[#C01048]'
         }
       ],
-      categories: [
-        'All Quizzes',
-        'geography',
-        'art',
-        'music',
-        'IT',
-        'history',
-        'dance',
-        'sport',
-        'math',
-        'geography',
-        'art',
-        'music',
-        'IT',
-        'history',
-        'dance',
-        'sport',
-        'math',
-        'physics'
-      ],
+      categories: ['All Quizzes', 'geography', 'IT', 'history', 'dance', 'sport', 'math'],
       selectedOptions: {
         quizes: [],
         levels: [],
@@ -148,6 +130,17 @@ export default {
         this.selectedOptions.sort_popular === false &&
         this.selectedOptions.sort_date === null
       )
+    },
+    filterCounter() {
+      const truthyValues = Object.values(this.selectedOptions).filter(
+        (value) =>
+          value !== null &&
+          value !== false &&
+          value !== '' &&
+          (Array.isArray(value) ? value.length !== 0 : true)
+      ).length
+      console.log('filter count', truthyValues)
+      return truthyValues
     }
   },
   components: {
@@ -159,17 +152,37 @@ export default {
     NewestIcon,
     OldestIcon,
     PopularIcon,
-    GreenSelectedIcon
+    GreenSelectedIcon,
+    FilterIcon
   }
 }
 </script>
 
 <template>
-  <button @click="openFilter">Filter</button>
+  <button
+    @click="openFilter"
+    class="flex items-center my-4 mx-4 py-3 px-[0.875rem] border rounded-xl gap-2 relative"
+    :class="filterCounter === 0 ? 'border-gray-300' : 'border-black'"
+  >
+    <FilterIcon :color="filterCounter === 0 ? '#667085' : '#000000'" />
+    <span
+      class="font-inter font-normal text-sm leading-6"
+      :class="filterCounter === 0 ? 'text-gray-500' : 'text-black'"
+      >Filter</span
+    >
+    <div
+      class="p-[0.25rem] bg-white absolute -top-2 -right-2"
+      :class="filterCounter === 0 ? 'hidden' : 'block'"
+    >
+      <div class="w-5 h-5 bg-black rounded-full flex items-center justify-center">
+        <span class="font-inter font-bold text-white text-[10px]">{{ filterCounter }}</span>
+      </div>
+    </div>
+  </button>
   <!-- MOBILE RESOLUTION FILTER -->
   <div
     :class="filterActive ? 'flex xl:hidden' : 'hidden xl:hidden'"
-    class="w-full h-screen overflow-auto bg-white fixed top-0 left-0 flex-col z-10"
+    class="w-full h-screen bg-white fixed top-0 left-0 flex-col z-10"
   >
     <!-- HEADRE -->
     <header
@@ -223,7 +236,7 @@ export default {
       </div>
     </div>
     <!-- FILTER OPTIONS -->
-    <div class="px-18 pt-6 pb-0" :class="{ hidden: activeTab === 'sorting' }">
+    <div class="px-18 pt-6 pb-0 flex flex-col" :class="{ hidden: activeTab === 'sorting' }">
       <!-- QUIZES CHECKBOXES -->
       <div class="flex flex-col gap-10 pb-5 border-b border-gray-300">
         <div class="flex gap-2 items-center">
@@ -290,7 +303,7 @@ export default {
         </div>
       </div>
       <!-- CATEGORIES -->
-      <div class="pt-5 mb-4">
+      <div class="pt-5 pb-[7rem] h-[12rem] overflow-auto">
         <h6 class="font-inter font-semibold text-sm text-gray-900 mb-4">Categories</h6>
         <div class="flex flex-wrap gap-2">
           <button
@@ -415,7 +428,7 @@ export default {
     </div>
     <!-- CONFIRM/CANCEL -->
     <div
-      class="w-full py-22 px-18 flex gap-[0.625rem] bg-white shadow-inner"
+      class="w-full py-22 px-18 flex gap-[0.625rem] bg-white shadow-inner absolute bottom-0 left-0"
       :class="isOptionsEmpty ? 'hidden' : 'block'"
     >
       <button
@@ -434,3 +447,9 @@ export default {
   <!-- DESKTOP RESOLUTION FILTER  -->
   <div :class="filterActive ? 'hidden xl:flex ' : 'hidden xl:hidden'">desktop</div>
 </template>
+
+<style scoped>
+::-webkit-scrollbar {
+  display: none;
+}
+</style>
