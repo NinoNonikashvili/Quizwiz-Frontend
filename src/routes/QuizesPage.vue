@@ -1,13 +1,15 @@
 <script>
 import AppHeader from '../components/layout/AppHeader.vue'
-import QuizCard from '../components/quiz/QuizCard.vue'
+// import QuizCard from '../components/quiz/QuizCard.vue'
 import CategoryFilter from '../components/quiz/CategoryFilter.vue'
+import GeneralFilter from '../components/quiz/GeneralFilter.vue'
 
 export default {
   components: {
     AppHeader,
-    QuizCard,
-    CategoryFilter
+    // QuizCard,
+    CategoryFilter,
+    GeneralFilter
   }
 }
 </script>
@@ -15,6 +17,6 @@ export default {
 <template>
   <AppHeader />
   <CategoryFilter />
-
-  <QuizCard />
+  <GeneralFilter />
+  <!-- <QuizCard /> -->
 </template>

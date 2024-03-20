@@ -36,18 +36,17 @@ export default {
         'dance',
         'sport',
         'math',
-
         'physics'
       ],
       selected: []
     }
   },
   methods: {
-    setSelected(id) {
-      if (!this.selected.includes(id)) {
-        this.selected.push(id)
+    setSelected(cat) {
+      if (!this.selected.includes(cat)) {
+        this.selected.push(cat)
       } else {
-        this.selected.splice(this.selected.indexOf(id), 1)
+        this.selected.splice(this.selected.indexOf(cat), 1)
       }
       console.log(this.selected)
     }
@@ -68,12 +67,17 @@ export default {
       class="mySwiper border-b border-gray-300"
     >
       <swiper-slide
-        class="border-b-2 border-transparent"
-        :class="{ 'text-black border-b-2 border-black': selected.includes(index) }"
+        class="border-b-2"
+        :class="selected.includes(cat) ? 'border-black' : 'border-transparent'"
         v-for="(cat, index) in categories"
         :key="index"
-        @click="setSelected(index)"
-        ><p class="font-inter text-sm font-semibold text-gray-500">{{ cat }}</p></swiper-slide
+        @click="setSelected(cat)"
+        ><p
+          class="font-inter text-sm font-semibold"
+          :class="selected.includes(cat) ? 'text-black' : 'text-gray-500'"
+        >
+          {{ cat }}
+        </p></swiper-slide
       >
     </swiper>
   </div>
