@@ -2,6 +2,12 @@
 import CrossIcon from '../icons/CrossIcon.vue'
 import SearchIcon from '../icons/SearchIcon.vue'
 import CheckIcon from '../icons/CheckIcon.vue'
+import AscIcon from '../icons/AscIcon.vue'
+import DescIcon from '../icons/DescIcon.vue'
+import NewestIcon from '../icons/NewestIcon.vue'
+import OldestIcon from '../icons/OldestIcon.vue'
+import PopularIcon from '../icons/PopularIcon.vue'
+import GreenSelectedIcon from '../icons/GreenSelectedIcon.vue'
 
 export default {
   data() {
@@ -147,7 +153,13 @@ export default {
   components: {
     CrossIcon,
     SearchIcon,
-    CheckIcon
+    CheckIcon,
+    AscIcon,
+    DescIcon,
+    NewestIcon,
+    OldestIcon,
+    PopularIcon,
+    GreenSelectedIcon
   }
 }
 </script>
@@ -157,7 +169,7 @@ export default {
   <!-- MOBILE RESOLUTION FILTER -->
   <div
     :class="filterActive ? 'flex xl:hidden' : 'hidden xl:hidden'"
-    class="w-full fixed top-0 left-0 flex-col z-10"
+    class="w-full h-screen overflow-auto bg-white fixed top-0 left-0 flex-col z-10"
   >
     <!-- HEADRE -->
     <header
@@ -302,7 +314,105 @@ export default {
       </div>
     </div>
     <!-- SORT OPTIONS -->
-    <div :class="{ hidden: activeTab === 'filter' }">Sorting</div>
+    <div
+      :class="{ hidden: activeTab === 'filter' }"
+      class="px-18 pt-6 pb-0 h-auto flex flex-col gap-4"
+    >
+      <!-- ASC/DESC -->
+      <div class="w-[22.5rem] group relative">
+        <div
+          class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+        >
+          <AscIcon />
+          <label class="font-inter font-semibold text-sm leading-6 text-gray-600">A-Z</label>
+          <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <GreenSelectedIcon />
+          </div>
+        </div>
+        <input
+          type="radio"
+          name="sort_alphabet"
+          value="asc"
+          class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
+          v-model="this.selectedOptions.sort_alphabet"
+        />
+      </div>
+      <div class="w-[22.5rem] group relative">
+        <div
+          class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+        >
+          <DescIcon />
+          <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Z-A</label>
+          <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <GreenSelectedIcon />
+          </div>
+        </div>
+        <input
+          type="radio"
+          name="sort_alphabet"
+          value="desc"
+          class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
+          v-model="this.selectedOptions.sort_alphabet"
+        />
+      </div>
+      <!-- MOST POPULAR -->
+      <div class="w-[22.5rem] group relative">
+        <div
+          class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+        >
+          <PopularIcon />
+          <label class="font-inter font-semibold text-sm leading-6 text-gray-600"
+            >Most popular</label
+          >
+          <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <GreenSelectedIcon />
+          </div>
+        </div>
+        <input
+          type="checkbox"
+          name="sort_alphabet"
+          class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
+          v-model="this.selectedOptions.sort_popular"
+        />
+      </div>
+      <!-- DATE-->
+      <div class="w-[22.5rem] group relative">
+        <div
+          class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+        >
+          <NewestIcon />
+          <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Newest</label>
+          <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <GreenSelectedIcon />
+          </div>
+        </div>
+        <input
+          type="radio"
+          name="sort_date"
+          value="newest"
+          class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
+          v-model="this.selectedOptions.sort_date"
+        />
+      </div>
+      <div class="w-[22.5rem] group relative">
+        <div
+          class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+        >
+          <OldestIcon />
+          <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Oldest</label>
+          <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <GreenSelectedIcon />
+          </div>
+        </div>
+        <input
+          type="radio"
+          name="sort_date"
+          value="oldest"
+          class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
+          v-model="this.selectedOptions.sort_date"
+        />
+      </div>
+    </div>
     <!-- CONFIRM/CANCEL -->
     <div
       class="w-full py-22 px-18 flex gap-[0.625rem] bg-white shadow-inner"
