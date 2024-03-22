@@ -28,7 +28,7 @@ export default {
     </div>
     <div class="xl:absolute top-20 right-0 h-464 xl:h-936 overflow-hidden">
       <div class="xl:hidden relative">
-        <img src="../assets/images/banner.png" alt="woman reading a book" />
+        <img src="../../assets/images/banner.png" alt="woman reading a book" />
         <p class="font-raleway font-bold text-5xl text-white leading-13 absolute left-12 top-220">
           Our mission <br />
           is to <br />
