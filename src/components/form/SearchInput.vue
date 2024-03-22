@@ -1,6 +1,6 @@
 <script>
-import SearchIcon from '../icons/SearchIcon.vue'
-import CrossIcon from '../icons/CrossIcon.vue'
+import SearchIcon from '@/components/icons/SearchIcon.vue'
+import CrossIcon from '@/components/icons/CrossIcon.vue'
 
 export default {
   name: 'SearchInput',

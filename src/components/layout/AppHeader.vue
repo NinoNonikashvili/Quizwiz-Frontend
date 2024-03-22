@@ -1,10 +1,10 @@
 <script>
-import BurgerIcon from '../icons/BurgerIcon.vue'
-import LogoIcon from '../icons/LogoIcon.vue'
-import UserIcon from '../icons/UserIcon.vue'
-import SearchInput from '../form/SearchInput.vue'
+import BurgerIcon from '@/components/icons/BurgerIcon.vue'
+import LogoIcon from '@/components/icons/LogoIcon.vue'
+import UserIcon from '@/components/icons/UserIcon.vue'
+import SearchInput from '@/components/form/SearchInput.vue'
 // import LogoutIcon from '../icons/LogoutIcon.vue'
-import CrossIcon from '../icons/CrossIcon.vue'
+import CrossIcon from '@/components/icons/CrossIcon.vue'
 
 export default {
   props: ['isHome'],
@@ -22,7 +22,7 @@ export default {
 
 <template>
   <header
-    class="bg-white px-4 py-6 xl:px-24 flex justify-between items-center border-b border-gray-300"
+    class="bg-white px-4 py-4 xl:py-6 xl:px-24 flex justify-between items-center border-b border-gray-300"
   >
     <div class="flex items-center gap-11">
       <!-- Logo -->

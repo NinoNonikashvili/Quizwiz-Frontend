@@ -1,9 +1,9 @@
 <script>
-import AppHeader from '../components/layout/AppHeader.vue'
-import AppFooter from '../components/layout/AppFooter.vue'
-import LogoTittleMob from '../components/icons/LogoTittleMob.vue'
-import LogoTittleDesk from '../components/icons/LogoTittleDesk.vue'
-import TopRightArrowIcon from '../components/icons/TopRightArrowIcon.vue'
+import AppHeader from '@/components/layout/AppHeader.vue'
+import AppFooter from '@/components/layout/AppFooter.vue'
+import LogoTittleMob from '@/components/icons/LogoTittleMob.vue'
+import LogoTittleDesk from '@/components/icons/LogoTittleDesk.vue'
+import TopRightArrowIcon from '@/components/icons/TopRightArrowIcon.vue'
 
 export default {
   components: {
