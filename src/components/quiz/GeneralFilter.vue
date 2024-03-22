@@ -1,14 +1,14 @@
 <script>
-import CrossIcon from '../icons/CrossIcon.vue'
-import SearchIcon from '../icons/SearchIcon.vue'
-import CheckIcon from '../icons/CheckIcon.vue'
-import AscIcon from '../icons/AscIcon.vue'
-import DescIcon from '../icons/DescIcon.vue'
-import NewestIcon from '../icons/NewestIcon.vue'
-import OldestIcon from '../icons/OldestIcon.vue'
-import PopularIcon from '../icons/PopularIcon.vue'
-import GreenSelectedIcon from '../icons/GreenSelectedIcon.vue'
-import FilterIcon from '../icons/FilterIcon.vue'
+import CrossIcon from '@/components/icons/CrossIcon.vue'
+import SearchIcon from '@/components/icons/SearchIcon.vue'
+import CheckIcon from '@/components/icons/CheckIcon.vue'
+import AscIcon from '@/components/icons/AscIcon.vue'
+import DescIcon from '@/components/icons/DescIcon.vue'
+import NewestIcon from '@/components/icons/NewestIcon.vue'
+import OldestIcon from '@/components/icons/OldestIcon.vue'
+import PopularIcon from '@/components/icons/PopularIcon.vue'
+import GreenSelectedIcon from '@/components/icons/GreenSelectedIcon.vue'
+import FilterIcon from '@/components/icons/FilterIcon.vue'
 
 export default {
   data() {

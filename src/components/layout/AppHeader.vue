@@ -1,10 +1,10 @@
 <script>
-import BurgerIcon from '../icons/BurgerIcon.vue'
-import LogoIcon from '../icons/LogoIcon.vue'
-import UserIcon from '../icons/UserIcon.vue'
-import SearchInput from '../form/SearchInput.vue'
+import BurgerIcon from '@/components/icons/BurgerIcon.vue'
+import LogoIcon from '@/components/icons/LogoIcon.vue'
+import UserIcon from '@/components/icons/UserIcon.vue'
+import SearchInput from '@/components/form/SearchInput.vue'
 // import LogoutIcon from '../icons/LogoutIcon.vue'
-import CrossIcon from '../icons/CrossIcon.vue'
+import CrossIcon from '@/components/icons/CrossIcon.vue'
 
 export default {
   props: ['isHome'],

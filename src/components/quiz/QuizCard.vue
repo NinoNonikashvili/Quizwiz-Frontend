@@ -1,7 +1,7 @@
 <script>
-import DotDividerIcon from '../icons/DotDividerIcon.vue'
-import TopRightArrowBlack from '../icons/TopRightArrowBlack.vue'
-import QuizDetail from './QuizDetail.vue'
+import DotDividerIcon from '@/components/icons/DotDividerIcon.vue'
+import TopRightArrowBlack from '@/components/icons/TopRightArrowBlack.vue'
+import QuizDetail from '@/components/quiz/QuizDetail.vue'
 
 export default {
   data() {

@@ -1,5 +1,5 @@
 <script>
-import LogoIcon from '../icons/LogoIcon.vue'
+import LogoIcon from '@/components/icons/LogoIcon.vue'
 
 export default {
   name: 'AppFooter',
