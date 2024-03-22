@@ -1,7 +1,7 @@
 <script>
 import DotDividerIcon from '@/components/icons/DotDividerIcon.vue'
 import TopRightArrowBlack from '@/components/icons/TopRightArrowBlack.vue'
-import QuizDetail from '@/components/quiz/QuizDetail.vue'
+import QuizCardDetail from '@/components/ui/QuizCardDetail.vue'
 
 export default {
   data() {
@@ -12,7 +12,7 @@ export default {
   components: {
     DotDividerIcon,
     TopRightArrowBlack,
-    QuizDetail
+    QuizCardDetail
   }
 }
 </script>
@@ -48,25 +48,25 @@ export default {
           <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
             <TopRightArrowBlack />
           </div>
-          <QuizDetail :completed="false" title="Completed" text="20 Jan, 2022" />
+          <QuizCardDetail :completed="false" title="Completed" text="20 Jan, 2022" />
         </div>
         <div class="flex gap-3 items-center">
-          <QuizDetail :completed="false" title="Total time" text="12Minute" />
+          <QuizCardDetail :completed="false" title="Total time" text="12Minute" />
         </div>
         <div class="flex gap-3 items-center">
-          <QuizDetail :completed="true" title="Total users" text="54" />
-        </div>
-        <div class="flex gap-3 items-center">
-          <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
-            <TopRightArrowBlack />
-          </div>
-          <QuizDetail :completed="true" title="Difficulty level" text="beginner" />
+          <QuizCardDetail :completed="true" title="Total users" text="54" />
         </div>
         <div class="flex gap-3 items-center">
           <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
             <TopRightArrowBlack />
           </div>
-          <QuizDetail :completed="true" title="POINTS" text="10/10" />
+          <QuizCardDetail :completed="true" title="Difficulty level" text="beginner" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
+            <TopRightArrowBlack />
+          </div>
+          <QuizCardDetail :completed="true" title="POINTS" text="10/10" />
         </div>
       </div>
     </div>

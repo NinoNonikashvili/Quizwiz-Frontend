@@ -1,14 +1,10 @@
 <script>
-import AppHeader from '@/components/layout/AppHeader.vue'
-import AppFooter from '@/components/layout/AppFooter.vue'
 import LogoTittleMob from '@/components/icons/LogoTittleMob.vue'
 import LogoTittleDesk from '@/components/icons/LogoTittleDesk.vue'
 import TopRightArrowIcon from '@/components/icons/TopRightArrowIcon.vue'
 
 export default {
   components: {
-    AppHeader,
-    AppFooter,
     LogoTittleMob,
     LogoTittleDesk,
     TopRightArrowIcon
@@ -17,7 +13,6 @@ export default {
 </script>
 
 <template>
-  <AppHeader :isHome="true" />
   <main class="xl:relative">
     <div class="pl-12 py-12 xl:pl-24 xl:py-16">
       <div class="xl:hidden">
@@ -64,5 +59,4 @@ export default {
       </div>
     </div>
   </main>
-  <AppFooter />
 </template>

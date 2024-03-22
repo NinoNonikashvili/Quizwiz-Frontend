@@ -1,6 +1,6 @@
 <script>
-// import HomePage from './routes/HomePage.vue'
-import QuizesPage from '@/routes/QuizesPage.vue'
+// import HomePage from './views/HomePage.vue'
+import QuizesPage from '@/views/QuizesPage.vue'
 
 export default {
   components: {
