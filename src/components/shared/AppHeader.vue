@@ -2,7 +2,7 @@
 import BurgerIcon from '@/components/icons/BurgerIcon.vue'
 import LogoIcon from '@/components/icons/LogoIcon.vue'
 import UserIcon from '@/components/icons/UserIcon.vue'
-import SearchInput from '@/components/form/SearchInput.vue'
+import SearchInput from '@/components/ui/SearchInput.vue'
 // import LogoutIcon from '../icons/LogoutIcon.vue'
 import CrossIcon from '@/components/icons/CrossIcon.vue'
 

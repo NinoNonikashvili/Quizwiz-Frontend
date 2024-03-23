@@ -60,14 +60,17 @@ export default {
       :scrollbar="{
         hide: false
       }"
-      :navigation="true"
       :modules="modules"
+      :navigation="{
+        nextEl: '.swiper-button-next.category-filter-swiper-btn',
+        prevEl: '.swiper-button-prev.category-filter-swiper-btn'
+      }"
       :slidesPerView="'auto'"
       :spaceBetween="10"
-      class="mySwiper border-b border-gray-300"
+      class="mySwiper border-b border-gray-300 category-filter-swiper"
     >
       <swiper-slide
-        class="border-b-2"
+        class="border-b-2 category-filter-swiper-slide"
         :class="selected.includes(cat) ? 'border-black' : 'border-transparent'"
         v-for="(cat, index) in categories"
         :key="index"
@@ -79,12 +82,14 @@ export default {
           {{ cat }}
         </p></swiper-slide
       >
+      <div class="swiper-button-next category-filter-swiper-btn"></div>
+      <div class="swiper-button-prev category-filter-swiper-btn"></div>
     </swiper>
   </div>
 </template>
 
-<style>
-.swiper {
+<style scoped>
+.swiper.category-filter-swiper {
   width: 95%;
   margin-left: 0;
   height: 100%;
@@ -92,7 +97,7 @@ export default {
   transition: ease 0.4s;
 }
 
-.swiper-slide {
+.swiper-slide.category-filter-swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -105,8 +110,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.swiper-button-next,
-.swiper-button-prev {
+
+.swiper-button-next.category-filter-swiper-btn,
+.swiper-button-prev.category-filter-swiper-btn {
   border-radius: 100%;
   width: 2.375rem;
   height: 2.375rem;
@@ -118,26 +124,26 @@ export default {
   display: none;
 }
 @media (min-width: 1440px) {
-  .swiper-button-next,
-  .swiper-button-prev {
+  .swiper-button-next.category-filter-swiper-btn,
+  .swiper-button-prev.category-filter-swiper-btn {
     display: flex;
   }
-  .swiper {
+  .swiper.category-filter-swiper {
     width: 90%;
     margin-left: 5%;
   }
-  .swiper:has(.swiper-button-prev.swiper-button-disabled) {
+  .swiper.category-filter-swiper:has(.swiper-button-prev.swiper-button-disabled) {
     width: 95%;
     margin-left: 0;
   }
 }
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
+.swiper-button-next.category-filter-swiper-btn:hover,
+.swiper-button-prev.category-filter-swiper-btn:hover {
   background-color: #e6e6e6;
   transition: ease 0.4s;
 }
 
-.swiper-button-disabled {
+.swiper-button-disabled.category-filter-swiper-btn {
   display: none;
   transition: ease 0.4s;
 }

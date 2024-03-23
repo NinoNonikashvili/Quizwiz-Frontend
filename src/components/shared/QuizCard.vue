@@ -1,7 +1,7 @@
 <script>
-import DotDividerIcon from '@/components/icons/DotDividerIcon.vue'
 import TopRightArrowBlack from '@/components/icons/TopRightArrowBlack.vue'
-import QuizDetail from '@/components/quiz/QuizDetail.vue'
+import QuizCardDetail from '@/components/ui/QuizCardDetail.vue'
+import QuizCardCategory from '@/components/shared/QuizCardCategory.vue'
 
 export default {
   data() {
@@ -10,29 +10,23 @@ export default {
     }
   },
   components: {
-    DotDividerIcon,
     TopRightArrowBlack,
-    QuizDetail
+    QuizCardDetail,
+    QuizCardCategory
   }
 }
 </script>
 
 <template>
   <div
-    class="group p-6 bg-white w-394 flex flex-col gap-8 shadow-lg border border-transparent hover:border hover:border-black hover:rounded-md"
+    class="group p-6 bg-white w-394 flex flex-col gap-8 shadow-lg border border-transparent hover:border hover:border-black hover:rounded-lg"
   >
     <!-- CARD IMAGE -->
-    <img src="../../assets/images/card2.png" alt="" class="w-full object-cover" />
+    <img src="@/assets/images/card2.png" alt="" class="w-full object-cover" />
     <div>
       <!-- CARD CATEGORIES -->
-      <div v-if="categories.length !== 0" class="flex gap-3">
-        <li v-for="(cat, index) in categories" :key="index" class="flex gap-3 items-center">
-          <span class="font-inter font-semibold text-purple-500 text-sm leading-5">{{ cat }}</span>
-          <span v-if="index !== categories.length - 1">
-            <DotDividerIcon />
-          </span>
-        </li>
-      </div>
+
+      <QuizCardCategory :categories="categories" />
       <!-- CARD TITLE  -->
       <div class="flex items-center justify-between">
         <h3 class="pt-3 pb-5 font-inter font-semibold text-gray-900 text-2xl">
@@ -48,25 +42,25 @@ export default {
           <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
             <TopRightArrowBlack />
           </div>
-          <QuizDetail :completed="false" title="Completed" text="20 Jan, 2022" />
+          <QuizCardDetail :completed="false" title="Completed" text="20 Jan, 2022" />
         </div>
         <div class="flex gap-3 items-center">
-          <QuizDetail :completed="false" title="Total time" text="12Minute" />
+          <QuizCardDetail :completed="false" title="Total time" text="12Minute" />
         </div>
         <div class="flex gap-3 items-center">
-          <QuizDetail :completed="true" title="Total users" text="54" />
-        </div>
-        <div class="flex gap-3 items-center">
-          <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
-            <TopRightArrowBlack />
-          </div>
-          <QuizDetail :completed="true" title="Difficulty level" text="beginner" />
+          <QuizCardDetail :completed="true" title="Total users" text="54" />
         </div>
         <div class="flex gap-3 items-center">
           <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
             <TopRightArrowBlack />
           </div>
-          <QuizDetail :completed="true" title="POINTS" text="10/10" />
+          <QuizCardDetail :completed="true" title="Difficulty level" text="beginner" />
+        </div>
+        <div class="flex gap-3 items-center">
+          <div class="w-10 h-10 rounded-full bg-green-100 flex justify-center items-center">
+            <TopRightArrowBlack />
+          </div>
+          <QuizCardDetail :completed="true" title="POINTS" text="10/10" />
         </div>
       </div>
     </div>
