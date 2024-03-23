@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <main class="xl:relative">
+  <main class="xl:relative overflow-hidden">
     <div class="pl-12 py-12 xl:pl-24 xl:py-16">
       <div class="xl:hidden">
         <LogoTittleMob />
@@ -28,7 +28,7 @@ export default {
     </div>
     <div class="xl:absolute top-20 right-0 h-464 xl:h-936 overflow-hidden">
       <div class="xl:hidden relative">
-        <img src="../../assets/images/banner.png" alt="woman reading a book" />
+        <img src="@/assets/images/banner.png" alt="woman reading a book" />
         <p class="font-raleway font-bold text-5xl text-white leading-13 absolute left-12 top-220">
           Our mission <br />
           is to <br />
@@ -37,7 +37,7 @@ export default {
         </p>
       </div>
       <div class="hidden xl:block">
-        <img src="../assets/images/bannerDesk.png" alt="" />
+        <img src="@/assets/images/bannerDesk.png" alt="" />
       </div>
     </div>
     <div class="pl-12 py-74 xl:pl-24 xl:py-16 bg-orange-500">

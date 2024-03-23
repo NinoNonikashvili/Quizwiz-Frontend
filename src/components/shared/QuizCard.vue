@@ -1,7 +1,7 @@
 <script>
-import DotDividerIcon from '@/components/icons/DotDividerIcon.vue'
 import TopRightArrowBlack from '@/components/icons/TopRightArrowBlack.vue'
 import QuizCardDetail from '@/components/ui/QuizCardDetail.vue'
+import QuizCardCategory from '@/components/shared/QuizCardCategory.vue'
 
 export default {
   data() {
@@ -10,29 +10,23 @@ export default {
     }
   },
   components: {
-    DotDividerIcon,
     TopRightArrowBlack,
-    QuizCardDetail
+    QuizCardDetail,
+    QuizCardCategory
   }
 }
 </script>
 
 <template>
   <div
-    class="group p-6 bg-white w-394 flex flex-col gap-8 shadow-lg border border-transparent hover:border hover:border-black hover:rounded-md"
+    class="group p-6 bg-white w-394 flex flex-col gap-8 shadow-lg border border-transparent hover:border hover:border-black hover:rounded-lg"
   >
     <!-- CARD IMAGE -->
-    <img src="../../assets/images/card2.png" alt="" class="w-full object-cover" />
+    <img src="@/assets/images/card2.png" alt="" class="w-full object-cover" />
     <div>
       <!-- CARD CATEGORIES -->
-      <div v-if="categories.length !== 0" class="flex gap-3">
-        <li v-for="(cat, index) in categories" :key="index" class="flex gap-3 items-center">
-          <span class="font-inter font-semibold text-purple-500 text-sm leading-5">{{ cat }}</span>
-          <span v-if="index !== categories.length - 1">
-            <DotDividerIcon />
-          </span>
-        </li>
-      </div>
+
+      <QuizCardCategory :categories="categories" />
       <!-- CARD TITLE  -->
       <div class="flex items-center justify-between">
         <h3 class="pt-3 pb-5 font-inter font-semibold text-gray-900 text-2xl">
