@@ -22,8 +22,11 @@ export default {
         'gray-850': '#808080',
         'gray-900': '#101828',
         'orange-500': '#FF5613',
+        'purple-100': '#BCC7FF',
         'purple-500': '#4B69FD',
-        'green-100': '#D1FADF'
+        'green-100': '#D1FADF',
+        'red-100': '#FDA29B',
+        'red-500': '#F04438'
       },
       screens: {
         xs: '430px',
