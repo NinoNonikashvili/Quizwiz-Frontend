@@ -2,16 +2,18 @@
 import { Form as VeeForm, Field } from 'vee-validate'
 import ErrorIcon from '@/components/icons/ErrorIcon.vue'
 import '@/plugins/vee-validate/rules'
-import ShowPassWordIcon from '@/components/icons/ShowPassWordIcon.vue'
 import CheckIcon from '@/components/icons/CheckIcon.vue'
+import VeePassword from '@/components/shared/form/VeePassword.vue'
+import VeeSubmitBtn from '@/components/shared/form/VeeSubmitBtn.vue'
 
 export default {
   components: {
     VeeForm,
     Field,
     ErrorIcon,
-    ShowPassWordIcon,
-    CheckIcon
+    CheckIcon,
+    VeePassword,
+    VeeSubmitBtn
   },
 
   data: () => ({
@@ -27,12 +29,6 @@ export default {
     showConfirmedPassword: false
   }),
   methods: {
-    togglePassword() {
-      this.showPassword = !this.showPassword
-    },
-    toggleConfirmedPassword() {
-      this.showConfirmedPassword = !this.showConfirmedPassword
-    },
     submit(values) {
       console.log(values)
     }
@@ -86,91 +82,14 @@ export default {
         </div>
       </Field>
       <!-- EMAIL -->
-      <Field name="email" v-slot="{ field, errorMessage }">
-        <div class="w-full flex flex-col gap-2">
-          <label for="registerEmail" class="font-inter font-normal text-sm text-gray-700 leading-4"
-            >Email</label
-          >
-          <div class="w-full relative">
-            <input
-              v-bind="field"
-              id="registerEmail"
-              type="email"
-              class="w-full border border-gray-300 rounded-[10px] py-[1.125rem] px-4 focus:outline-none focus:border-[0.1875rem] focus:border-purple-100 font-inter font-normal text-base leading-5 text-black placeholder:text-gray-500"
-              :class="{ 'border-red-100': errorMessage }"
-              placeholder="Example@gmail.com"
-            />
-            <div v-if="errorMessage" class="absolute top-6 right-4">
-              <ErrorIcon />
-            </div>
-          </div>
-          <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
-            errorMessage
-          }}</span>
-        </div>
-      </Field>
+
+      <VeeEmail name="email" id="registerEmail" label="Email" />
       <!-- PASSWORD -->
-      <Field name="password" v-slot="{ field, errorMessage }">
-        <div class="w-full flex flex-col gap-2">
-          <label
-            for="registerPassword"
-            class="font-inter font-normal text-sm text-gray-700 leading-4"
-            >Create password</label
-          >
-          <div class="w-full relative">
-            <input
-              v-bind="field"
-              id="registerPassword"
-              :type="showPassword ? 'text' : 'password'"
-              class="w-full border border-gray-300 rounded-[10px] py-[1.125rem] px-4 focus:outline-none focus:border-[0.1875rem] focus:border-purple-100 font-inter font-normal text-base leading-5 text-black placeholder:text-gray-500"
-              :class="{ 'border-red-100': errorMessage }"
-              placeholder="must be 8 characters"
-            />
-            <div v-if="errorMessage" class="absolute top-6 right-4">
-              <ErrorIcon />
-            </div>
-            <div v-if="!errorMessage" class="absolute top-6 right-4" @click="togglePassword">
-              <ShowPassWordIcon />
-            </div>
-          </div>
-          <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
-            errorMessage
-          }}</span>
-        </div>
-      </Field>
+
+      <VeePassword name="password" id="registerPassword" label="Create password" />
       <!-- CONFIRM PASSWORD -->
-      <Field name="confirmPassword" v-slot="{ field, errorMessage }">
-        <div class="w-full flex flex-col gap-2">
-          <label
-            for="registerConfirmPassword"
-            class="font-inter font-normal text-sm text-gray-700 leading-4"
-            >Confirm password</label
-          >
-          <div class="w-full relative">
-            <input
-              v-bind="field"
-              id="registerConfirmPassword"
-              :type="showConfirmedPassword ? 'text' : 'password'"
-              class="w-full border border-gray-300 rounded-[10px] py-[1.125rem] px-4 focus:outline-none focus:border-[0.1875rem] focus:border-purple-100 font-inter font-normal text-base leading-5 text-black placeholder:text-gray-500"
-              :class="{ 'border-red-100': errorMessage }"
-              placeholder="must be 8 characters"
-            />
-            <div v-if="errorMessage" class="absolute top-6 right-4">
-              <ErrorIcon />
-            </div>
-            <div
-              v-if="!errorMessage"
-              class="absolute top-6 right-4"
-              @click="toggleConfirmedPassword"
-            >
-              <ShowPassWordIcon />
-            </div>
-          </div>
-          <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
-            errorMessage
-          }}</span>
-        </div>
-      </Field>
+
+      <VeePassword name="confirmPassword" id="registerConfirmPassword" label="Confirm password" />
       <!-- AGREE TERMS -->
       <Field name="agreeTerms" v-slot="{ field, errorMessage }">
         <div class="w-full flex flex-col gap-2">
@@ -203,11 +122,7 @@ export default {
         </div>
       </Field>
 
-      <button
-        class="mt-9 rounded-[0.625rem] font-inter font-semibold text-base bg-black text-white py-[1.125rem]"
-      >
-        Submit
-      </button>
+      <VeeSubmitBtn text="Sign up" />
     </VeeForm>
   </div>
 </template>
