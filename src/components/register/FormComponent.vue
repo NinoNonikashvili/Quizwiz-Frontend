@@ -5,6 +5,7 @@ import '@/plugins/vee-validate/rules'
 import CheckIcon from '@/components/icons/CheckIcon.vue'
 import VeePassword from '@/components/shared/form/VeePassword.vue'
 import VeeSubmitBtn from '@/components/shared/form/VeeSubmitBtn.vue'
+import VeeEmail from '@/components/shared/form/VeeEmail.vue'
 
 export default {
   components: {
@@ -13,7 +14,8 @@ export default {
     ErrorIcon,
     CheckIcon,
     VeePassword,
-    VeeSubmitBtn
+    VeeSubmitBtn,
+    VeeEmail
   },
 
   data: () => ({

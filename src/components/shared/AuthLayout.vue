@@ -29,7 +29,7 @@ export default {
         class="absolute top-0 left-0 -z-10 w-full h-full object-cover"
       />
       <img
-        v-if="page === 'resetPass'"
+        v-if="page === 'reset'"
         src="@/assets/images/forget-pass-bg.png"
         alt="woman scanning some documents"
         class="absolute top-0 left-0 -z-10 w-full h-full object-cover"

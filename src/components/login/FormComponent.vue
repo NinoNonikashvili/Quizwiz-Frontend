@@ -92,9 +92,12 @@ export default {
             }}</span>
           </div>
         </Field>
-        <button class="bg-transparent font-inter font-normal text-sm leading-4 text-gray-700">
+        <RouterLink
+          :to="{ name: 'resetPass' }"
+          class="bg-transparent font-inter font-normal text-sm leading-4 text-gray-700"
+        >
           Forgot password?
-        </button>
+        </RouterLink>
       </div>
 
       <!-- Submit -->
