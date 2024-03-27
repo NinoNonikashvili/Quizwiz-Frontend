@@ -1,6 +1,13 @@
 import { defineRule } from 'vee-validate'
 
 defineRule('required', (value, [field]) => {
+  if (field === 'checkbox') {
+    if (!value) {
+      return 'This field is required!'
+    } else {
+      return true
+    }
+  }
   if (!value || !value.length) {
     return `${field} is required!`
   }

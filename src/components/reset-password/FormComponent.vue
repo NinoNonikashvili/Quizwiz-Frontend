@@ -35,13 +35,18 @@ export default {
       class="text-center xl:text-start font-inter font-normal text-sm leading-6 text-gray-600 mt-6 xl:mt-9"
       >Don’t worry! It happens. Please enter the email associated with your account.
     </span>
-    <VeeForm class="w-full flex flex-col gap-6 mt-10" @submit="submit" :validation-schema="schema">
+    <VeeForm
+      class="w-full flex flex-col gap-6 mt-10"
+      @submit="submit"
+      :validation-schema="schema"
+      v-slot="{ errors }"
+    >
       <!-- EMAIL -->
 
-      <VeeEmail name="email" id="loginEmail" label="Email" />
+      <VeeEmail name="email" id="loginEmail" label="Email" :errors="errors" />
 
       <!-- Submit -->
-      <VeeSubmitBtn text="Send" />
+      <VeeSubmitBtn text="Send" :errors="errors" />
     </VeeForm>
   </div>
 </template>
