@@ -23,9 +23,8 @@ export default {
       username: 'required:Username',
       email: 'required:Email|email',
       password: 'required:Password|minLength:3',
-      confirmPassword: 'required:This field|confirmed:password',
-      agreeTerms: 'required:checkbox',
-      terms: 'required:terms'
+      confirm_password: 'required:This field|confirmed:password',
+      terms: 'required:checkbox'
     },
     showPassword: false,
     showConfirmedPassword: false
@@ -33,9 +32,13 @@ export default {
   methods: {
     submit(values) {
       console.log(values)
+      this.$store.dispatch('signup/signup', values)
     },
     checkboxVal(val) {
       console.log(val.target.value)
+    },
+    test(values) {
+      console.log(values)
     }
   }
 }
@@ -68,14 +71,14 @@ export default {
       <VeePassword name="password" id="registerPassword" label="Create password" :errors="errors" />
 
       <VeePassword
-        name="confirmPassword"
+        name="confirm_password"
         id="registerConfirmPassword"
         label="Confirm password"
         :errors="errors"
       />
 
       <VeeCheckbox
-        name="agreeTerms"
+        name="terms"
         id="registerTerms"
         label="I agree terms and conditions"
         :errors="errors"

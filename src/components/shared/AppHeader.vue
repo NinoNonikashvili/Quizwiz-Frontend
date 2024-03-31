@@ -47,16 +47,20 @@ export default {
       <div class="hidden xl:flex items-center">
         <!-- either login/signup -->
         <div>
-          <button
-            class="py-4 px-6 font-raleway text-sm leading-4 font-bold text-white bg-black rounded-md"
-          >
-            Sign up
-          </button>
-          <button
-            class="py-4 px-6 font-raleway text-sm leading-4 font-bold text-purple-500 bg-white"
-          >
-            Log in
-          </button>
+          <RouterLink :to="{ name: 'register' }">
+            <button
+              class="py-4 px-6 font-raleway text-sm leading-4 font-bold text-white bg-black rounded-md"
+            >
+              Sign up
+            </button>
+          </RouterLink>
+          <RouterLink :to="{ name: 'login' }">
+            <button
+              class="py-4 px-6 font-raleway text-sm leading-4 font-bold text-purple-500 bg-white"
+            >
+              Log in
+            </button>
+          </RouterLink>
         </div>
         <!-- or user icon -->
         <div>

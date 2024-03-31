@@ -25,6 +25,10 @@ export default {
   methods: {
     submit(values) {
       console.log(values)
+      if (values.remember === undefined) {
+        values.remember = false
+      }
+      this.$store.dispatch('login', values)
     }
   }
 }
@@ -63,7 +67,7 @@ export default {
       <div class="flex w-full justify-between">
         <!-- REMEMBER PASSWORD -->
         <VeeCheckbox
-          name="rememberPass"
+          name="remember"
           id="rememberPass"
           label="Remember for 30 days"
           :errors="errors"
