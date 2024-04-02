@@ -28,6 +28,7 @@ export default {
       if (values.remember === undefined) {
         values.remember = false
       }
+      this.$emit('set-email', values.email)
       this.$store.dispatch('login', values)
     }
   }

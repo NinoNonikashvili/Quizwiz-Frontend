@@ -1,22 +1,10 @@
-import axios from 'axios'
+import signUp from '@/services/axios/signup'
 
 export default {
-  signup(context, payload) {
+  signup(context, data) {
     console.log('sign up request')
 
-    const instance = axios.create({
-      baseURL: 'http://127.0.0.1:8000/api/register',
-      method: 'post',
-      headers: {
-        Accept: 'application/json'
-      }
-    })
-    instance.defaults.withCredentials = true
-    instance.defaults.withXSRFToken = true
-
-    instance({
-      data: payload
-    }).then((response) => console.log(response.status))
+    signUp(data).then((result) => console.log(result))
 
     //if success
     context.commit('setUserCreatedState', true)
