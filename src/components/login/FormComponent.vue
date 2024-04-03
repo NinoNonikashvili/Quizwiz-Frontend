@@ -1,19 +1,18 @@
 <script>
-import { Form as VeeForm, Field } from 'vee-validate'
+import { Form as VeeForm } from 'vee-validate'
 import '@/plugins/vee-validate/rules'
-import CheckIcon from '@/components/icons/CheckIcon.vue'
 import VeePassword from '@/components/shared/form/VeePassword.vue'
 import VeeEmail from '@/components/shared/form/VeeEmail.vue'
 import VeeSubmitBtn from '@/components/shared/form/VeeSubmitBtn.vue'
+import VeeCheckbox from '@/components/shared/form/VeeCheckbox.vue'
 
 export default {
   components: {
     VeeForm,
-    Field,
-    CheckIcon,
     VeePassword,
     VeeEmail,
-    VeeSubmitBtn
+    VeeSubmitBtn,
+    VeeCheckbox
   },
 
   data: () => ({
@@ -26,6 +25,11 @@ export default {
   methods: {
     submit(values) {
       console.log(values)
+      if (values.remember === undefined) {
+        values.remember = false
+      }
+      this.$emit('set-email', values.email)
+      this.$store.dispatch('login', values)
     }
   }
 }
@@ -51,47 +55,26 @@ export default {
       class="xl:order-2 w-full flex flex-col gap-6 mt-10"
       @submit="submit"
       :validation-schema="schema"
+      v-slot="{ errors }"
     >
       <!-- EMAIL -->
 
-      <VeeEmail name="email" id="loginEmail" label="Email" />
+      <VeeEmail name="email" id="loginEmail" label="Email" :errors="errors" />
 
       <!-- PASSWORD -->
 
-      <VeePassword name="password" id="loginPassword" label="Password" />
+      <VeePassword name="password" id="loginPassword" label="Password" :errors="errors" />
 
       <div class="flex w-full justify-between">
         <!-- REMEMBER PASSWORD -->
-        <Field name="rememberPass" v-slot="{ field, errorMessage }">
-          <div class="w-fit flex flex-col gap-2">
-            <div class="w-full flex gap-3 items-center">
-              <div class="relative group h-5">
-                <input
-                  v-bind="field"
-                  id="rememberPass"
-                  type="checkbox"
-                  class="opacity-0 peer w-5 h-5"
-                />
-                <div
-                  class="absolute top-0 left-0 pointer-events-none w-5 h-5 flex justify-center items-center focus:outline-none border border-gray-300 rounded-full bg-white peer-checked:bg-black"
-                >
-                  <div class="hidden group-has-[:checked]:inline-block">
-                    <CheckIcon color="#ffffff" />
-                  </div>
-                </div>
-              </div>
-              <label
-                for="rememberPass"
-                class="font-inter font-normal text-sm text-gray-700 leading-4"
-              >
-                Remember for 30 days
-              </label>
-            </div>
-            <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
-              errorMessage
-            }}</span>
-          </div>
-        </Field>
+        <VeeCheckbox
+          name="remember"
+          id="rememberPass"
+          label="Remember for 30 days"
+          :errors="errors"
+          width="w-fit"
+        />
+        <!-- FORGOT PASSWORD -->
         <RouterLink
           :to="{ name: 'resetPass' }"
           class="bg-transparent font-inter font-normal text-sm leading-4 text-gray-700"
@@ -101,7 +84,7 @@ export default {
       </div>
 
       <!-- Submit -->
-      <VeeSubmitBtn text="Log in" />
+      <VeeSubmitBtn text="Log in" :errors="errors" />
     </VeeForm>
   </div>
 </template>

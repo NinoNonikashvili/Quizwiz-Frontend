@@ -8,6 +8,10 @@ export default {
     LogoTittleMob,
     LogoTittleDesk,
     TopRightArrowIcon
+  },
+  mounted() {
+    this.$store.dispatch('sanctum/retrieveToken')
+    console.log(this.$store.getters['sanctum/getToken'])
   }
 }
 </script>

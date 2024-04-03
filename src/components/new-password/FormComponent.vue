@@ -37,15 +37,25 @@ export default {
       class="text-center xl:text-start font-inter font-normal text-sm leading-6 text-gray-600 mt-6 xl:mt-9"
       >Please type something you’ll remember
     </span>
-    <VeeForm class="w-full flex flex-col gap-6 mt-10" @submit="submit" :validation-schema="schema">
+    <VeeForm
+      class="w-full flex flex-col gap-6 mt-10"
+      @submit="submit"
+      :validation-schema="schema"
+      v-slot="{ errors }"
+    >
       <!-- PASSWORD -->
 
-      <VeePassword name="password" id="newPassword" label="New Password" />
+      <VeePassword name="password" id="newPassword" label="New Password" :errors="errors" />
       <!-- CONFIRM PASSWORD -->
-      <VeePassword name="confirmPassword" id="confirmNewPassword" label="Confirm Password" />
+      <VeePassword
+        name="confirmPassword"
+        id="confirmNewPassword"
+        label="Confirm Password"
+        :errors="errors"
+      />
 
       <!-- Submit -->
-      <VeeSubmitBtn text="Reset password" />
+      <VeeSubmitBtn text="Reset password" :errors="errors" />
     </VeeForm>
     <span class="text-start font-inter font-normal text-base text-black opacity-70 mt-6 xl:mt-9"
       >Already have an account?

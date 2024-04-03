@@ -15,6 +15,7 @@ const router = createRouter({
     { path: '/quizes/:id', name: 'quiz', component: QuizPage },
     { path: '/register', name: 'register', component: RegisterPage },
     { path: '/login', name: 'login', component: LoginPage },
+    { path: '/login/email/verify/:id/:hash', name: 'login-verify', component: LoginPage },
     { path: '/reset', name: 'resetPass', component: ResetPasswordPage },
     { path: '/newPassword', name: 'newPass', component: NewPasswordPage }
   ]

@@ -5,8 +5,8 @@ import ErrorIcon from '@/components/icons/ErrorIcon.vue'
 export default {
   components: {
     Field,
-    ErrorIcon,
-    ErrorMessage
+    ErrorMessage,
+    ErrorIcon
   },
   props: {
     name: { type: String, required: true },
@@ -26,16 +26,19 @@ export default {
       <Field
         :name="name"
         :id="id"
-        type="email"
+        type="text"
         class="w-full border border-gray-300 rounded-[10px] py-[1.125rem] px-4 focus:outline-none focus:border-[0.1875rem] focus:border-purple-100 font-inter font-normal text-base leading-5 text-black placeholder:text-gray-500"
         :class="{ 'border-red-100': errors[name] }"
-        placeholder="Example@gmail.com"
+        placeholder="type here"
       />
 
       <div v-if="errors[name]" class="absolute top-6 right-4">
         <ErrorIcon />
       </div>
     </div>
+    <!-- <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
+        errorMessage
+      }}</span> -->
     <ErrorMessage :name="name" class="font-inter font-normal text-sm text-red-500" />
   </div>
 </template>
