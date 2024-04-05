@@ -6,6 +6,21 @@ import RegisterPage from '@/views/RegisterPage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import NewPasswordPage from '@/views/NewPasswordPage.vue'
+import store from '@/plugins/vuex/store/index'
+
+const guest = (to) => {
+  console.log(store.getters['isUserLoggedIn'])
+  if (
+    // make sure the user is authenticated
+
+    store.getters['isUserLoggedIn'] &&
+    // ❗️ Avoid an infinite redirect
+    to.name !== 'home'
+  ) {
+    // redirect the user to the login page
+    return { name: 'home' }
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,11 +28,16 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomePage },
     { path: '/quizes', name: 'quizes', component: QuizesPage },
     { path: '/quizes/:id', name: 'quiz', component: QuizPage },
-    { path: '/register', name: 'register', component: RegisterPage },
-    { path: '/login', name: 'login', component: LoginPage },
-    { path: '/login/email/verify/:id/:hash', name: 'login-verify', component: LoginPage },
-    { path: '/reset', name: 'resetPass', component: ResetPasswordPage },
-    { path: '/newPassword', name: 'newPass', component: NewPasswordPage }
+    { path: '/register', name: 'register', component: RegisterPage, beforeEnter: [guest] },
+    { path: '/login', name: 'login', component: LoginPage, beforeEnter: [guest] },
+    {
+      path: '/login/email/verify/:id/:hash',
+      name: 'login-verify',
+      component: LoginPage,
+      beforeEnter: [guest]
+    },
+    { path: '/reset', name: 'resetPass', component: ResetPasswordPage, beforeEnter: [guest] },
+    { path: '/newPassword', name: 'newPass', component: NewPasswordPage, beforeEnter: [guest] }
   ]
 })
 

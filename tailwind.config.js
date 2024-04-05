@@ -11,6 +11,7 @@ export default {
         'gray-80': '#FAFAFA',
         'gray-90': '#f1f2f5',
         'gray-100': '#F2F4F7',
+        'gray-150': '#c8c5c5',
         'gray-200': '#EAECF0',
         'gray-300': '#D0D5DD',
         'gray-400': '#98A2B3',
@@ -26,7 +27,11 @@ export default {
         'purple-500': '#4B69FD',
         'green-100': '#D1FADF',
         'red-100': '#FDA29B',
-        'red-500': '#F04438'
+        'red-500': '#F04438',
+        'success-500': '#01E17B',
+        'error-500': '#F04349',
+        'warning-500': '#FFD21F',
+        'warning-100': '#ffd21f33'
       },
       screens: {
         xs: '430px',

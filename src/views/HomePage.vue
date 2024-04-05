@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader :isHome="true" />
+  <AppHeader :hasSearch="true" />
   <MainContent />
   <AppFooter />
 </template>

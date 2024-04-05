@@ -10,8 +10,12 @@ export default {
     TopRightArrowIcon
   },
   mounted() {
-    this.$store.dispatch('sanctum/retrieveToken')
     console.log(this.$store.getters['sanctum/getToken'])
+    if (!this.$store.getters['sanctum/getToken']) {
+      this.$store.dispatch('sanctum/retrieveToken')
+    }
+
+    console.log(this.$store.getters['isUserLoggedIn'])
   }
 }
 </script>
