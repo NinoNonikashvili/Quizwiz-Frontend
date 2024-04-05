@@ -1,9 +1,5 @@
 <script>
-export default {
-  beforeUnmount() {
-    alert('beforeUnmount: The text inside the p-tag is: ')
-  }
-}
+export default {}
 </script>
 
 <template>

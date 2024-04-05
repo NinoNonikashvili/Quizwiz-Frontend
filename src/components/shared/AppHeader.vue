@@ -12,8 +12,7 @@ export default {
   data() {
     return {
       showMenuOffcanvas: false,
-      showLogoutOffcanvas: false,
-      auth: this.$store.getters['isUserLoggedIn']
+      showLogoutOffcanvas: false
     }
   },
   components: {
@@ -23,6 +22,11 @@ export default {
     SearchInput,
     LogoutIcon,
     CrossIcon
+  },
+  computed: {
+    auth() {
+      return this.$store.getters['isUserLoggedIn']
+    }
   },
   methods: {
     logout() {
@@ -162,7 +166,7 @@ export default {
     <!-- logout offcanvas -->
     <div
       v-if="showLogoutOffcanvas"
-      class="absolute top-5 right-24 w-80 h-40 px-4 py-8 flex flex-col justify-between bg-white border border-gray-300 rounded-lg"
+      class="absolute z-10 top-5 right-24 w-80 h-40 px-4 py-8 flex flex-col justify-between bg-white border border-gray-300 rounded-lg"
     >
       <img
         src="../../assets/images/Avatar.png"

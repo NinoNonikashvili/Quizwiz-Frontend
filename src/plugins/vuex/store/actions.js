@@ -30,6 +30,8 @@ export default {
       .then((res) => {
         if (res.statusText === 'OK') {
           context.commit('setLoggedInState', false)
+          router.push({ name: 'home' })
+          console.log('logged out')
         } else {
           console.log(res.status, res.statusText)
         }

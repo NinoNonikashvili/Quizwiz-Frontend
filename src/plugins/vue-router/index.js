@@ -8,7 +8,7 @@ import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import NewPasswordPage from '@/views/NewPasswordPage.vue'
 import store from '@/plugins/vuex/store/index'
 
-const guest = (to) => {
+const guest = (from, to) => {
   console.log(store.getters['isUserLoggedIn'])
   if (
     // make sure the user is authenticated

@@ -5,6 +5,28 @@ export default {
   name: 'AppFooter',
   components: {
     LogoIcon
+  },
+  mounted() {
+    if (this.$store.getters['footer/getFooterData'] === null) {
+      this.$store.dispatch('footer/handleFooterRequest')
+    }
+  },
+  computed: {
+    email() {
+      return this.$store.getters['footer/getFooterData']
+        ? this.$store.getters['footer/getFooterData'].email
+        : ' '
+    },
+    phone() {
+      return this.$store.getters['footer/getFooterData']
+        ? this.$store.getters['footer/getFooterData'].phone
+        : ' '
+    },
+    socials() {
+      return this.$store.getters['footer/getFooterData']
+        ? this.$store.getters['footer/getFooterData'].socials
+        : ' '
+    }
   }
 }
 </script>
@@ -20,28 +42,31 @@ export default {
           <h3 class="mb-4 xl:mb-6 font-inter font-medium text-sm text-gray-900 leading-5">
             Content
           </h3>
-          <p class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6">Quizzes</p>
+          <RouterLink :to="{ name: 'quizes' }">
+            <p class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6">Quizzes</p>
+          </RouterLink>
         </li>
         <li>
           <h3 class="mb-4 xl:mb-6 font-inter font-medium text-sm text-gray-900 leading-5">
             Contact us
           </h3>
           <p class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6">
-            Email: quizwiz@gmail.com
+            {{ 'Email: ' + email }}
           </p>
           <p class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6">
-            Tel: +995 328989
+            {{ 'Tel: ' + phone }}
           </p>
         </li>
-        <li>
+        <li v-if="socials">
           <h3 class="mb-4 xl:mb-6 font-inter font-medium text-sm text-gray-900 leading-5">
             Social media
           </h3>
-          <a class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6 block" href="#"
-            >Facebook</a
-          >
-          <a class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6 block" href="#"
-            >Instagram</a
+          <a
+            v-for="(link, name, index) in socials"
+            :key="index"
+            class="font-inter font-medium text-xs text-gray-600 leading-5 mb-6 block"
+            :href="link"
+            >{{ name }}</a
           >
         </li>
       </ul>
