@@ -147,9 +147,11 @@ export default {
         />
         <div class="w-full flex justify-between">
           <div>
-            <h4 class="font-inter font-semibold text-md leading-5 text-gray-900">Oliver Rhye</h4>
+            <h4 class="font-inter font-semibold text-md leading-5 text-gray-900">
+              {{ this.$store.getters['getUser'] ? this.$store.getters['getUser'].username : '' }}
+            </h4>
             <p class="font-inter font-normal text-sm leading-5 text-gray-600">
-              oliverRgye@gmail.com
+              {{ this.$store.getters['getUser'] ? this.$store.getters['getUser'].email : '' }}
             </p>
           </div>
         </div>
@@ -175,8 +177,12 @@ export default {
       />
       <div class="w-full flex justify-between">
         <div>
-          <h4 class="font-inter font-semibold text-sm leading-5 text-gray-900">Oliver Rhye</h4>
-          <p class="font-inter font-normal text-sm leading-5 text-gray-600">oliverRgye@gmail.com</p>
+          <h4 class="font-inter font-semibold text-sm leading-5 text-gray-900">
+            {{ this.$store.getters['getUser'] ? this.$store.getters['getUser'].username : '' }}
+          </h4>
+          <p class="font-inter font-normal text-sm leading-5 text-gray-600">
+            {{ this.$store.getters['getUser'] ? this.$store.getters['getUser'].email : '' }}
+          </p>
         </div>
         <button @click="logout" class="mt-auto">
           <LogoutIcon />

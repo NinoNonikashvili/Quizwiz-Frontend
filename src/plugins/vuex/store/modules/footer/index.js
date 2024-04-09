@@ -9,7 +9,7 @@ export default {
       footerData: null
     }
   },
+  actions: FooterActions,
   getters: FooterGetters,
-  mutations: FooterMutations,
-  actions: FooterActions
+  mutations: FooterMutations
 }

@@ -17,8 +17,9 @@ export default {
     }
   },
   methods: {
-    submit() {
+    submit(values) {
       console.log('send request')
+      this.$store.dispatch('resetPassword/handleResetRequestSent', values)
     }
   }
 }

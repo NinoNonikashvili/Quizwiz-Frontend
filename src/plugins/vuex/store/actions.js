@@ -1,6 +1,7 @@
 import login from '@/services/axios/login'
 import logout from '@/services/axios/logout'
 import router from '@/plugins/vue-router/index'
+import checkAuth from '@/services/axios/checkAuth'
 
 export default {
   login(context, data) {
@@ -9,6 +10,7 @@ export default {
       .then((res) => {
         if (res.statusText === 'OK') {
           context.commit('setLoggedInState', true)
+          context.commit('setUser', res.data)
           context.commit('errors/setLoginError', res.status)
           console.log('logged in')
           router.push({ name: 'home' })
@@ -30,6 +32,7 @@ export default {
       .then((res) => {
         if (res.statusText === 'OK') {
           context.commit('setLoggedInState', false)
+          context.commit('setUser', null)
           router.push({ name: 'home' })
           console.log('logged out')
         } else {
@@ -40,5 +43,18 @@ export default {
         console.log(err.code)
         context.commit('setLoggedInState', false)
       })
+  },
+  handleCheckAuth(context) {
+    checkAuth()
+      .then((res) => {
+        console.log(res.data)
+        if (res.statusText === 'OK' && res.data) {
+          context.commit('setLoggedInState', true)
+          context.commit('setUser', res.data)
+        } else {
+          console.log(res.status, res.statusText)
+        }
+      })
+      .catch((err) => console.log(err.code))
   }
 }

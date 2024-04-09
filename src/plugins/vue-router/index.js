@@ -36,8 +36,18 @@ const router = createRouter({
       component: LoginPage,
       beforeEnter: [guest]
     },
-    { path: '/reset', name: 'resetPass', component: ResetPasswordPage, beforeEnter: [guest] },
-    { path: '/newPassword', name: 'newPass', component: NewPasswordPage, beforeEnter: [guest] }
+    {
+      path: '/forgot-password',
+      name: 'resetPass',
+      component: ResetPasswordPage,
+      beforeEnter: [guest]
+    },
+    {
+      path: '/reset-password',
+      name: 'newPass',
+      component: NewPasswordPage,
+      beforeEnter: [guest]
+    }
   ]
 })
 

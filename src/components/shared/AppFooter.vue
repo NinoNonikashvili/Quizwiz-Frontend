@@ -7,7 +7,7 @@ export default {
     LogoIcon
   },
   mounted() {
-    if (this.$store.getters['footer/getFooterData'] === null) {
+    if (!this.$store.getters['footer/getFooterData']) {
       this.$store.dispatch('footer/handleFooterRequest')
     }
   },
