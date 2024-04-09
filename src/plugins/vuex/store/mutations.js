@@ -1,5 +1,8 @@
 export default {
-  setLoggedInState(state, isLoogedIn) {
-    state.isLoggedIn = isLoogedIn
+  setLoggedInState(state, isLogedIn) {
+    state.isLoggedIn = isLogedIn
+  },
+  setUser(state, data) {
+    state.user = data
   }
 }

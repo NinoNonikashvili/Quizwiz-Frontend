@@ -4,17 +4,24 @@ import AuthGetters from '@/plugins/vuex/store/getters'
 import AuthMutations from '@/plugins/vuex/store/mutations'
 import Signup from '@/plugins/vuex/store/modules/signup/index'
 import Sanctum from '@/plugins/vuex/store/modules/sanctum/index'
-import verifyEmail from '@/plugins/vuex/store/modules/verify-email'
+import verifyEmail from '@/plugins/vuex/store/modules/verify-email/index'
+import Errors from '@/plugins/vuex/store/modules/errors/index'
+import FooterData from '@/plugins/vuex/store/modules/footer/index'
+import ResetPassword from '@/plugins/vuex/store/modules/reset-password/index'
 
 const store = createStore({
   modules: {
     sanctum: Sanctum,
     signup: Signup,
-    verifyEmail: verifyEmail
+    verifyEmail: verifyEmail,
+    errors: Errors,
+    footer: FooterData,
+    resetPassword: ResetPassword
   },
   state() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      user: null
     }
   },
   actions: AuthActions,

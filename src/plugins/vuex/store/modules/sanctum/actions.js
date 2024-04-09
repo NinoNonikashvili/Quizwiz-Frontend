@@ -2,7 +2,7 @@ import getSanctumTokens from '@/services/axios/sanctum'
 
 export default {
   retrieveToken(context) {
-    console.log('csrf up request')
+    console.log('csrf  request')
     getSanctumTokens().then((response) => console.log(response.status))
 
     //if success

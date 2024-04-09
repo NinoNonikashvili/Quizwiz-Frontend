@@ -22,6 +22,7 @@ export default {
     },
     showPassword: false
   }),
+
   methods: {
     submit(values) {
       console.log(values)
@@ -30,6 +31,7 @@ export default {
       }
       this.$emit('set-email', values.email)
       this.$store.dispatch('login', values)
+      console.log(this.$store.getters['isUserLoggedIn'])
     }
   }
 }
@@ -64,6 +66,12 @@ export default {
       <!-- PASSWORD -->
 
       <VeePassword name="password" id="loginPassword" label="Password" :errors="errors" />
+      <div
+        v-if="this.$store.getters['errors/getLoginErrorCode'] === 404"
+        class="font-inter font-normal text-sm text-red-500"
+      >
+        {{ this.$store.getters['errors/getLoginErrorMessage'] }}
+      </div>
 
       <div class="flex w-full justify-between">
         <!-- REMEMBER PASSWORD -->

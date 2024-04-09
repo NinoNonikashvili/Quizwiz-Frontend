@@ -21,6 +21,14 @@ export default {
   methods: {
     submit(values) {
       console.log(values)
+      console.log(this.$route.query)
+      let data = {
+        email: this.$route.query.email,
+        token: this.$route.query.token,
+        password: values.password,
+        password_confirmation: values.confirmPassword
+      }
+      this.$store.dispatch('resetPassword/handleSendNewPassword', data)
     }
   }
 }
