@@ -1,23 +1,26 @@
 <script>
 import AppHeader from '@/components/shared/AppHeader.vue'
-import QuizCard from '../components/shared/QuizCard.vue'
 import CategoryFilter from '@/components/quizes/CategoryFilter.vue'
 import GeneralFilter from '@/components/quizes/GeneralFilter.vue'
+import QuizesWrapper from '@/components/quizes/QuizesWrapper.vue'
 
 export default {
   components: {
     AppHeader,
-    QuizCard,
     CategoryFilter,
-    GeneralFilter
+    GeneralFilter,
+    QuizesWrapper
   }
 }
 </script>
 
 <template>
   <AppHeader />
-  <CategoryFilter />
-  <GeneralFilter />
-  <QuizCard />
-  <div>{{ this.$store.getters['quizes/getQuizes'] }}</div>
+  <main class="px-4 xl:px-24">
+    <div class="w-full xl:w-[92%] block xl:inline-block">
+      <CategoryFilter />
+    </div>
+    <GeneralFilter />
+    <QuizesWrapper />
+  </main>
 </template>
