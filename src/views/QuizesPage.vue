@@ -19,4 +19,5 @@ export default {
   <CategoryFilter />
   <GeneralFilter />
   <QuizCard />
+  <div>{{ this.$store.getters['quizes/getQuizes'] }}</div>
 </template>

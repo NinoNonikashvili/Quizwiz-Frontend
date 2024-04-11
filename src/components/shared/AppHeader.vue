@@ -95,11 +95,17 @@ export default {
         <!-- or user icon -->
         <div @click="setShowLogoutOffcanvas" v-if="auth">
           <!-- show default avatar or user avatar -->
-          <div>
+          <div v-if="false">
             <UserIcon />
           </div>
           <!-- user avatar -->
-          <div></div>
+          <div>
+            <img
+              src="../../assets/images/Avatar.png"
+              alt=""
+              class="w-10 h-10 object-cover rounded-full"
+            />
+          </div>
         </div>
       </div>
     </div>

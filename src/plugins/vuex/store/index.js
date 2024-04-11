@@ -8,6 +8,7 @@ import verifyEmail from '@/plugins/vuex/store/modules/verify-email/index'
 import Errors from '@/plugins/vuex/store/modules/errors/index'
 import FooterData from '@/plugins/vuex/store/modules/footer/index'
 import ResetPassword from '@/plugins/vuex/store/modules/reset-password/index'
+import Quizes from '@/plugins/vuex/store/modules/quizes/index'
 
 const store = createStore({
   modules: {
@@ -16,7 +17,8 @@ const store = createStore({
     verifyEmail: verifyEmail,
     errors: Errors,
     footer: FooterData,
-    resetPassword: ResetPassword
+    resetPassword: ResetPassword,
+    quizes: Quizes
   },
   state() {
     return {

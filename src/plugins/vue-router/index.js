@@ -21,12 +21,17 @@ const guest = (from, to) => {
     return { name: 'home' }
   }
 }
+const loadQuizes = () => {
+  if (!store.getters['getQuizes']) {
+    store.dispatch('quizes/handleLoadQuizes')
+  }
+}
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', name: 'home', component: HomePage },
-    { path: '/quizes', name: 'quizes', component: QuizesPage },
+    { path: '/quizes', name: 'quizes', component: QuizesPage, beforeEnter: [loadQuizes] },
     { path: '/quizes/:id', name: 'quiz', component: QuizPage },
     { path: '/register', name: 'register', component: RegisterPage, beforeEnter: [guest] },
     { path: '/login', name: 'login', component: LoginPage, beforeEnter: [guest] },

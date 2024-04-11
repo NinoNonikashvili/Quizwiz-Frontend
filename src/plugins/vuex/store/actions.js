@@ -10,7 +10,7 @@ export default {
       .then((res) => {
         if (res.statusText === 'OK') {
           context.commit('setLoggedInState', true)
-          context.commit('setUser', res.data)
+          context.commit('setUser', res.data.data)
           context.commit('errors/setLoginError', res.status)
           console.log('logged in')
           router.push({ name: 'home' })
@@ -47,10 +47,9 @@ export default {
   handleCheckAuth(context) {
     checkAuth()
       .then((res) => {
-        console.log(res.data)
         if (res.statusText === 'OK' && res.data) {
           context.commit('setLoggedInState', true)
-          context.commit('setUser', res.data)
+          context.commit('setUser', res.data.data)
         } else {
           console.log(res.status, res.statusText)
         }
