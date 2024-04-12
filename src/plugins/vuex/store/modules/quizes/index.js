@@ -6,7 +6,9 @@ export default {
   namespaced: true,
   state() {
     return {
-      quizes: null
+      quizes: [],
+      isLoading: false,
+      isMorePage: true
     }
   },
   actions: CategoryActions,

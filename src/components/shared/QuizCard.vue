@@ -2,6 +2,7 @@
 import QuizCardDetail from '@/components/ui/QuizCardDetail.vue'
 import QuizCardCategory from '@/components/shared/QuizCardCategory.vue'
 import QuizCardDetailIcon from '@/components/ui/QuizCardDetailIcon.vue'
+import TopRightArrowBlack from '@/components/icons/TopRightArrowBlack.vue'
 
 export default {
   props: {
@@ -15,7 +16,8 @@ export default {
   components: {
     QuizCardDetail,
     QuizCardCategory,
-    QuizCardDetailIcon
+    QuizCardDetailIcon,
+    TopRightArrowBlack
   }
 }
 </script>

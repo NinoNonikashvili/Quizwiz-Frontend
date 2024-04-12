@@ -10,14 +10,7 @@ import store from '@/plugins/vuex/store/index'
 
 const guest = (from, to) => {
   console.log(store.getters['isUserLoggedIn'])
-  if (
-    // make sure the user is authenticated
-
-    store.getters['isUserLoggedIn'] &&
-    // ❗️ Avoid an infinite redirect
-    to.name !== 'home'
-  ) {
-    // redirect the user to the login page
+  if (store.getters['isUserLoggedIn'] && to.name !== 'home') {
     return { name: 'home' }
   }
 }

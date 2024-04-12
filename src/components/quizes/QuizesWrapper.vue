@@ -1,9 +1,25 @@
 <script>
 import QuizCard from '@/components/shared/QuizCard.vue'
+import ButtonLoadMore from '@/components/ui/ButtonLoadMore.vue'
 
 export default {
   components: {
-    QuizCard
+    QuizCard,
+    ButtonLoadMore
+  },
+  data() {
+    return {
+      page: 1
+    }
+  },
+
+  methods: {
+    fetchQuizes() {
+      this.$store.commit('quizes/setIsLoading', true)
+      let page = { page: ++this.page }
+      this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...page } })
+      this.$store.dispatch('quizes/handleLoadQuizes', this.$route.fullPath)
+    }
   }
 }
 </script>
@@ -14,7 +30,7 @@ export default {
       <QuizCard :quiz="quiz" />
     </div>
   </div>
-  <div class="mb-16">
-    <button>Load More</button>
+  <div class="mb-16 mx-auto w-fit">
+    <ButtonLoadMore @click="fetchQuizes" />
   </div>
 </template>
