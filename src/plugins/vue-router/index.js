@@ -9,14 +9,18 @@ import NewPasswordPage from '@/views/NewPasswordPage.vue'
 import store from '@/plugins/vuex/store/index'
 
 const guest = (from, to) => {
-  console.log(store.getters['isUserLoggedIn'])
   if (store.getters['isUserLoggedIn'] && to.name !== 'home') {
     return { name: 'home' }
   }
 }
-const loadQuizes = () => {
+const loadQuizes = (from) => {
   if (!store.getters['getQuizes']) {
-    store.dispatch('quizes/handleLoadQuizes')
+    if (from.query.page) {
+      store.commit('quizes/setCurrentPage', from.query.page)
+      store.dispatch('quizes/handleLoadQuizes', { query: null, page: from.query.page })
+    } else {
+      store.dispatch('quizes/handleLoadQuizes')
+    }
   }
 }
 

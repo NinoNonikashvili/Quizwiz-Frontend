@@ -14,11 +14,12 @@ export default {
   },
 
   methods: {
-    fetchQuizes() {
+    async fetchQuizes() {
       this.$store.commit('quizes/setIsLoading', true)
-      let page = { page: ++this.page }
-      this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...page } })
-      this.$store.dispatch('quizes/handleLoadQuizes', this.$route.fullPath)
+      await this.$store.commit('quizes/incrementCurrentPage')
+      let page = { page: this.$store.getters['quizes/getCurrentPage'] }
+      await this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...page } })
+      this.$store.dispatch('quizes/handleLoadQuizes', { query: this.$route.fullPath })
     }
   }
 }

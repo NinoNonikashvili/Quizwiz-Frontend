@@ -8,7 +8,8 @@ export default {
     return {
       quizes: [],
       isLoading: false,
-      isMorePage: true
+      isMorePage: true,
+      currentPage: 1
     }
   },
   actions: CategoryActions,

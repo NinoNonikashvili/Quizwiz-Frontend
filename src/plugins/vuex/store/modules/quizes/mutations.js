@@ -7,5 +7,11 @@ export default {
   },
   setisMorePage(state, value) {
     state.isMorePage = value
+  },
+  setCurrentPage(state, value) {
+    state.currentPage = value
+  },
+  incrementCurrentPage(state) {
+    return state.currentPage++
   }
 }

@@ -7,5 +7,8 @@ export default {
   },
   getIsMorePage(state) {
     return state.isMorePage
+  },
+  getCurrentPage(state) {
+    return state.currentPage
   }
 }
