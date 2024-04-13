@@ -16,8 +16,10 @@ const guest = (from, to) => {
 const loadQuizes = (from) => {
   if (!store.getters['getQuizes']) {
     if (from.query.page) {
-      store.commit('quizes/setCurrentPage', from.query.page)
-      store.dispatch('quizes/handleLoadQuizes', { query: null, page: from.query.page })
+      let params = { ...from.query }
+      params.totalPage = from.query.page
+      delete params.page
+      store.dispatch('quizes/handleLoadQuizes', params)
     } else {
       store.dispatch('quizes/handleLoadQuizes')
     }

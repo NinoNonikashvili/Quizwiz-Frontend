@@ -1,6 +1,9 @@
 export default {
-  setQuizes(state, data) {
+  updateQuizes(state, data) {
     state.quizes = state.quizes.concat(data)
+  },
+  setQuizes(state, data) {
+    state.quizes = data
   },
   setIsLoading(state, value) {
     state.isLoading = value
@@ -8,10 +11,10 @@ export default {
   setisMorePage(state, value) {
     state.isMorePage = value
   },
-  setCurrentPage(state, value) {
-    state.currentPage = value
+  resetCurrentPage(state) {
+    state.currentPage = 1
   },
   incrementCurrentPage(state) {
-    return state.currentPage++
+    state.currentPage++
   }
 }

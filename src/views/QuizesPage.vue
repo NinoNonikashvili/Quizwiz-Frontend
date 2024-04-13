@@ -10,6 +10,17 @@ export default {
     CategoryFilter,
     GeneralFilter,
     QuizesWrapper
+  },
+  watch: {
+    '$route.query': {
+      handler(newQuery, oldQuery) {
+        console.log(newQuery)
+        console.log(oldQuery)
+
+        this.$store.dispatch('quizes/handleLoadQuizes', newQuery)
+      },
+      deep: true
+    }
   }
 }
 </script>

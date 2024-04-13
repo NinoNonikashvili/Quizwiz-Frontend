@@ -7,19 +7,18 @@ export default {
     QuizCard,
     ButtonLoadMore
   },
-  data() {
-    return {
-      page: 1
+
+  mounted() {
+    if (this.$route.query.page && this.$route.query.page !== this.page) {
+      this.page = this.$route.query.page
     }
   },
 
   methods: {
-    async fetchQuizes() {
-      this.$store.commit('quizes/setIsLoading', true)
+    async updatePageQueryParam() {
       await this.$store.commit('quizes/incrementCurrentPage')
-      let page = { page: this.$store.getters['quizes/getCurrentPage'] }
-      await this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...page } })
-      this.$store.dispatch('quizes/handleLoadQuizes', { query: this.$route.fullPath })
+      let pageQuery = { page: this.$store.getters['quizes/getCurrentPage'] }
+      this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...pageQuery } })
     }
   }
 }
@@ -32,6 +31,6 @@ export default {
     </div>
   </div>
   <div class="mb-16 mx-auto w-fit">
-    <ButtonLoadMore @click="fetchQuizes" />
+    <ButtonLoadMore @click="updatePageQueryParam" />
   </div>
 </template>

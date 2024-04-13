@@ -8,7 +8,11 @@ export default {
         if (res.data.links.next === null) {
           context.commit('setisMorePage', false)
         }
-        context.commit('setQuizes', res.data.data)
+        if (payload && 'page' in payload) {
+          context.commit('updateQuizes', res.data.data)
+        } else {
+          context.commit('setQuizes', res.data.data)
+        }
       })
       .catch((err) => {
         context.commit('setIsLoading', false)

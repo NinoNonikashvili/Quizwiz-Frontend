@@ -1,14 +1,11 @@
 import Axios from '@/services/axios/instance'
 
-export default async function (payload) {
-  console.log(payload)
-  if (payload) {
-    if (payload.query) {
-      return await Axios.get('/api' + payload.query)
-    }
-    if (payload.page) {
-      return await Axios.get('/api/quizes?totalPage=' + payload.page)
-    }
+export default async function (params) {
+  console.log(params)
+  if (params) {
+    return await Axios.get('/api/quizes', {
+      params: params
+    })
   }
 
   return await Axios.get('/api/quizes')

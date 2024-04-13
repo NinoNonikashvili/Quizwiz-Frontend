@@ -95,7 +95,7 @@ export default {
           <QuizCardDetail
             :completed="quiz.completed"
             title="POINTS"
-            text="quiz.points"
+            :text="quiz.points"
             :fontBold="true"
           />
         </div>
