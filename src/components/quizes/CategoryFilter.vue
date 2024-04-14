@@ -28,6 +28,7 @@ export default {
   watch: {
     selected(val) {
       let queryWithoutPage = { ...this.$route.query }
+      this.$store.commit('categories/setSelectedCategories', val)
       delete queryWithoutPage.page
       this.$store.commit('quizes/resetCurrentPage')
       this.$router.push({
@@ -59,13 +60,21 @@ export default {
     >
       <swiper-slide
         class="border-b-2 category-filter-swiper-slide"
-        :class="selected.includes(cat.id) ? 'border-black' : 'border-transparent'"
+        :class="
+          this.$store.getters['categories/getSelectedCategories'].includes(cat.id)
+            ? 'border-black'
+            : 'border-transparent'
+        "
         v-for="(cat, index) in categories"
         :key="index"
       >
         <label
           class="font-inter text-sm font-semibold w-fit relative"
-          :class="selected.includes(cat.id) ? 'text-black' : 'text-gray-500'"
+          :class="
+            this.$store.getters['categories/getSelectedCategories'].includes(cat.id)
+              ? 'text-black'
+              : 'text-gray-500'
+          "
         >
           {{ cat.title }}
           <input

@@ -4,7 +4,7 @@ export default {
   handleGetLevels(context) {
     getLevels()
       .then((res) => {
-        context.commit('setLevels', res.data.data)
+        context.commit('setLevels', res.data)
       })
       .catch((err) => console.log(err))
   }

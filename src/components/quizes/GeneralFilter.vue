@@ -15,51 +15,13 @@ export default {
     return {
       filterActive: false,
       activeTab: 'filter',
-      levels: [
-        {
-          title: 'Starter',
-          color: 'text-[#026AA2]',
-          bg: 'bg-[#F0F9FF]',
-          bg_dark: 'bg-[#026AA2]'
-        },
-        {
-          title: 'Beginner',
-          color: 'text-[#175CD3]',
-          bg: 'bg-[#EFF8FF]',
-          bg_dark: 'bg-[#175CD3]'
-        },
-        {
-          title: 'Middle',
-          color: 'text-[#6941C6]',
-          bg: 'bg-[#F9F5FF]',
-          bg_dark: 'bg-[#6941C6]'
-        },
-        {
-          title: 'High',
-          color: 'text-[#B54708]',
-          bg: 'bg-[#FFFAEB]',
-          bg_dark: 'bg-[#B54708]'
-        },
-        {
-          title: 'Very High',
-          color: 'text-[#C11574]',
-          bg: 'bg-[#FDF2FA]',
-          bg_dark: 'bg-[#C11574]'
-        },
-        {
-          title: 'Dangerously High',
-          color: 'text-[#C01048]',
-          bg: 'bg-[#FFF1F3]',
-          bg_dark: 'bg-[#C01048]'
-        }
-      ],
-      categories: ['All Quizzes', 'geography', 'IT', 'history', 'dance', 'sport', 'math'],
+
       selectedOptions: {
         quizes: [],
-        levels: [],
-        categories: [],
+        level: [],
+        cat: [],
         sort_alphabet: null,
-        sort_popular: false,
+        sort_popular: null,
         sort_date: null
       },
       searchKeyword: '',
@@ -80,25 +42,26 @@ export default {
       this.activeTab = tab
     },
     setLevel(level) {
-      if (!this.selectedOptions.levels.includes(level)) {
-        this.selectedOptions.levels.push(level)
+      if (!this.selectedOptions.level.includes(level)) {
+        this.selectedOptions.level.push(level)
       } else {
-        this.selectedOptions.levels.splice(this.selectedOptions.levels.indexOf(level), 1)
+        this.selectedOptions.level.splice(this.selectedOptions.level.indexOf(level), 1)
       }
       console.log(this.selectedOptions)
     },
     setCategory(cat) {
-      if (!this.selectedOptions.categories.includes(cat)) {
-        this.selectedOptions.categories.push(cat)
+      if (!this.selectedOptions.cat.includes(cat)) {
+        this.selectedOptions.cat.push(cat)
       } else {
-        this.selectedOptions.categories.splice(this.selectedOptions.categories.indexOf(cat), 1)
+        this.selectedOptions.cat.splice(this.selectedOptions.cat.indexOf(cat), 1)
       }
+      this.$store.commit('categories/setSelectedCategories', this.selectedOptions.cat)
     },
 
     reset(callback) {
       this.selectedOptions.quizes.length = 0
-      this.selectedOptions.categories.length = 0
-      this.selectedOptions.levels.length = 0
+      this.selectedOptions.cat.length = 0
+      this.selectedOptions.level.length = 0
       this.selectedOptions.sort_alphabet = null
       this.selectedOptions.sort_popular = false
       this.selectedOptions.sort_date = null
@@ -118,14 +81,46 @@ export default {
           cb(...args)
         }, time)
       }
+    },
+    setQuery() {
+      let my_quizes =
+        this.selectedOptions.quizes.length === 0 || this.selectedOptions.quizes.length === 2
+          ? null
+          : this.selectedOptions.quizes.includes('my_quizes')
+
+      const query = Object.entries(this.selectedOptions)
+        .filter(([key, value]) => value !== null && key !== 'quizes')
+        .reduce((acc, [key, value]) => {
+          acc[key] = value
+          return acc
+        }, {})
+      if (my_quizes !== null) {
+        query.my_quizes = my_quizes
+      }
+      this.$router.push({
+        name: 'quizes',
+        query: {
+          ...query
+        }
+      })
+      console.log(this.selectedOptions)
     }
   },
+  mounted() {
+    this.$store.dispatch('levels/handleGetLevels')
+  },
   computed: {
+    categories() {
+      return this.$store.getters['categories/getCategories']
+    },
+    levels() {
+      return this.$store.getters['levels/getLevels']
+    },
     isOptionsEmpty() {
       return (
         this.selectedOptions.quizes.length === 0 &&
-        this.selectedOptions.categories.length === 0 &&
-        this.selectedOptions.levels.length === 0 &&
+        this.selectedOptions.cat.length === 0 &&
+        this.selectedOptions.level.length === 0 &&
         this.selectedOptions.sort_alphabet === null &&
         this.selectedOptions.sort_popular === false &&
         this.selectedOptions.sort_date === null
@@ -162,7 +157,7 @@ export default {
   <div class="w-fit block xl:inline-block xl:absolute xl:top-[6.625rem]">
     <button
       @click="openFilter"
-      class="flex items-center py-3 px-[0.875rem] border rounded-xl gap-2"
+      class="flex items-center py-3 px-[0.875rem] border rounded-xl gap-2 relative mt-2 xl:mt-0"
       :class="filterCounter === 0 ? 'border-gray-300' : 'border-black'"
     >
       <FilterIcon :color="filterCounter === 0 ? '#667085' : '#000000'" />
@@ -295,11 +290,14 @@ export default {
                 !level.title.toLowerCase().includes(searchKeyword.toLowerCase())
                   ? 'hidden '
                   : ' ',
-                this.selectedOptions.levels.includes(level.title)
-                  ? 'text-white ' + level.bg_dark
-                  : level.color + ' ' + level.bg
+                this.selectedOptions.level.includes(level.id)
+                  ? 'bg-[' + level.bg + ']'
+                  : 'bg-[' + level.bg + ']'
               ]"
-              @click="setLevel(level.title)"
+              :style="{
+                color: this.selectedOptions.level.includes(level.id) ? 'white' : level.color_active
+              }"
+              @click="setLevel(level.id)"
             >
               {{ level.title }}
             </button>
@@ -314,17 +312,17 @@ export default {
               :key="index"
               class="font-inter font-semibold text-sm py-2 px-14 rounded-full"
               :class="[
-                selectedOptions.categories.includes(cat)
+                selectedOptions.cat.includes(cat.id)
                   ? 'bg-black text-white'
                   : 'text-gray-600 bg-white',
                 this.searchKeyword.length !== 0 &&
-                !cat.toLowerCase().includes(searchKeyword.toLowerCase())
+                !cat.title.toLowerCase().includes(searchKeyword.toLowerCase())
                   ? 'hidden '
                   : ' '
               ]"
-              @click="setCategory(cat)"
+              @click="setCategory(cat.id)"
             >
-              {{ cat }}
+              {{ cat.title }}
             </button>
           </div>
         </div>
@@ -337,11 +335,15 @@ export default {
         <!-- ASC/DESC -->
         <div class="w-[22.5rem] group relative">
           <div
-            class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+            class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+            :class="this.selectedOptions.sort_alphabet === 'asc' ? 'bg-gray-200 ' : 'bg-white'"
           >
             <AscIcon />
             <label class="font-inter font-semibold text-sm leading-6 text-gray-600">A-Z</label>
-            <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <div
+              class="ml-auto"
+              :class="this.selectedOptions.sort_alphabet === 'asc' ? 'inline-block' : 'hidden'"
+            >
               <GreenSelectedIcon />
             </div>
           </div>
@@ -355,11 +357,15 @@ export default {
         </div>
         <div class="w-[22.5rem] group relative">
           <div
-            class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+            class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+            :class="this.selectedOptions.sort_alphabet === 'desc' ? 'bg-gray-200 ' : 'bg-white'"
           >
             <DescIcon />
             <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Z-A</label>
-            <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <div
+              class="ml-auto"
+              :class="this.selectedOptions.sort_alphabet === 'desc' ? 'inline-block' : 'hidden'"
+            >
               <GreenSelectedIcon />
             </div>
           </div>
@@ -394,36 +400,44 @@ export default {
         <!-- DATE-->
         <div class="w-[22.5rem] group relative">
           <div
-            class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+            class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+            :class="this.selectedOptions.sort_date === 'desc' ? 'bg-gray-200 ' : 'bg-white'"
           >
             <NewestIcon />
             <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Newest</label>
-            <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <div
+              class="ml-auto"
+              :class="this.selectedOptions.sort_date === 'desc' ? 'inline-block' : 'hidden'"
+            >
               <GreenSelectedIcon />
             </div>
           </div>
           <input
             type="radio"
             name="sort_date"
-            value="newest"
+            value="desc"
             class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
             v-model="this.selectedOptions.sort_date"
           />
         </div>
         <div class="w-[22.5rem] group relative">
           <div
-            class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+            class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+            :class="this.selectedOptions.sort_date === 'asc' ? 'bg-gray-200 ' : 'bg-white'"
           >
             <OldestIcon />
             <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Oldest</label>
-            <div class="ml-auto hidden group-has-[:checked]:inline-block">
+            <div
+              class="ml-auto"
+              :class="this.selectedOptions.sort_date === 'asc' ? 'inline-block' : 'hidden'"
+            >
               <GreenSelectedIcon />
             </div>
           </div>
           <input
             type="radio"
             name="sort_date"
-            value="oldest"
+            value="asc"
             class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
             v-model="this.selectedOptions.sort_date"
           />
@@ -435,6 +449,7 @@ export default {
         :class="isOptionsEmpty ? 'hidden' : 'block'"
       >
         <button
+          @click="setQuery"
           class="font-inter font-semibold text-lg leading-6 rounded-[10px] text-white bg-purple-500 py-18 px-[2.125rem] w-[15.875rem]"
         >
           Confirm
@@ -474,6 +489,7 @@ export default {
         <!-- CONFIRM/CANCEL -->
         <div class="w-fit flex items-center gap-4" :class="isOptionsEmpty ? 'hidden' : 'block'">
           <button
+            @click="setQuery"
             class="font-inter font-semibold text-sm leading-6 rounded-[10px] text-white bg-purple-500 py-[0.625rem] px-8 w-fit"
           >
             Confirm
@@ -548,11 +564,16 @@ export default {
                   !level.title.toLowerCase().includes(searchKeyword.toLowerCase())
                     ? 'hidden '
                     : ' ',
-                  this.selectedOptions.levels.includes(level.title)
-                    ? 'text-white ' + level.bg_dark
-                    : level.color + ' ' + level.bg
+                  this.selectedOptions.level.includes(level.id)
+                    ? 'bg-[' + level.bg + ']'
+                    : 'bg-[' + level.bg + ']'
                 ]"
-                @click="setLevel(level.title)"
+                :style="{
+                  color: this.selectedOptions.level.includes(level.id)
+                    ? 'white'
+                    : level.color_active
+                }"
+                @click="setLevel(level.id)"
               >
                 {{ level.title }}
               </button>
@@ -567,17 +588,17 @@ export default {
                 :key="index"
                 class="font-inter font-semibold text-sm py-2 px-14 rounded-full"
                 :class="[
-                  selectedOptions.categories.includes(cat)
+                  selectedOptions.cat.includes(cat.id)
                     ? 'bg-black text-white'
                     : 'text-gray-600 bg-white',
                   this.searchKeyword.length !== 0 &&
-                  !cat.toLowerCase().includes(searchKeyword.toLowerCase())
+                  !cat.title.toLowerCase().includes(searchKeyword.toLowerCase())
                     ? 'hidden '
                     : ' '
                 ]"
-                @click="setCategory(cat)"
+                @click="setCategory(cat.id)"
               >
-                {{ cat }}
+                {{ cat.title }}
               </button>
             </div>
           </div>
@@ -588,11 +609,15 @@ export default {
           <!-- ASC/DESC -->
           <div class="w-[22.5rem] group relative">
             <div
-              class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+              class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+              :class="this.selectedOptions.sort_alphabet === 'asc' ? 'bg-white' : 'bg-gray-200 '"
             >
               <AscIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">A-Z</label>
-              <div class="ml-auto hidden group-has-[:checked]:inline-block">
+              <div
+                class="ml-auto"
+                :class="this.selectedOptions.sort_alphabet === 'desc' ? 'inline-block' : 'hidden'"
+              >
                 <GreenSelectedIcon />
               </div>
             </div>
@@ -606,11 +631,15 @@ export default {
           </div>
           <div class="w-[22.5rem] group relative">
             <div
-              class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+              class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+              :class="this.selectedOptions.sort_alphabet === 'desc' ? 'bg-white' : 'bg-gray-200 '"
             >
               <DescIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Z-A</label>
-              <div class="ml-auto hidden group-has-[:checked]:inline-block">
+              <div
+                class="ml-auto"
+                :class="this.selectedOptions.sort_alphabet === 'desc' ? 'inline-block' : 'hidden'"
+              >
                 <GreenSelectedIcon />
               </div>
             </div>
@@ -645,18 +674,22 @@ export default {
           <!-- DATE-->
           <div class="w-[22.5rem] group relative">
             <div
-              class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+              class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+              :class="this.selectedOptions.sort_date === 'desc' ? 'bg-white' : 'bg-gray-200 '"
             >
               <NewestIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Newest</label>
-              <div class="ml-auto hidden group-has-[:checked]:inline-block">
+              <div
+                class="ml-auto"
+                :class="this.selectedOptions.sort_date === 'desc' ? 'inline-block' : 'hidden'"
+              >
                 <GreenSelectedIcon />
               </div>
             </div>
             <input
               type="radio"
               name="sort_date"
-              value="newest"
+              value="desc"
               class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
               v-model="this.selectedOptions.sort_date"
             />
@@ -667,14 +700,17 @@ export default {
             >
               <OldestIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Oldest</label>
-              <div class="ml-auto hidden group-has-[:checked]:inline-block">
+              <div
+                class="ml-auto"
+                :class="this.selectedOptions.sort_date === 'asc' ? 'inline-block' : 'hidden'"
+              >
                 <GreenSelectedIcon />
               </div>
             </div>
             <input
               type="radio"
               name="sort_date"
-              value="oldest"
+              value="acs"
               class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
               v-model="this.selectedOptions.sort_date"
             />
