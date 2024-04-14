@@ -1,12 +1,7 @@
 <script>
-// Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue'
-
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
-
-// import required modules
 import { Navigation } from 'swiper/modules'
 
 export default {
@@ -18,37 +13,30 @@ export default {
     return {
       modules: [Navigation],
 
-      categories: [
-        'All Quizzes',
-        'geography',
-        'art',
-        'music',
-        'IT',
-        'history',
-        'dance',
-        'sport',
-        'math',
-        'geography',
-        'art',
-        'music',
-        'IT',
-        'history',
-        'dance',
-        'sport',
-        'math',
-        'physics'
-      ],
       selected: []
     }
   },
-  methods: {
-    setSelected(cat) {
-      if (!this.selected.includes(cat)) {
-        this.selected.push(cat)
-      } else {
-        this.selected.splice(this.selected.indexOf(cat), 1)
-      }
-      console.log(this.selected)
+  mounted() {
+    this.$store.dispatch('categories/handleGetCategories')
+  },
+
+  computed: {
+    categories() {
+      return this.$store.getters['categories/getCategories']
+    }
+  },
+  watch: {
+    selected(val) {
+      let queryWithoutPage = { ...this.$route.query }
+      delete queryWithoutPage.page
+      this.$store.commit('quizes/resetCurrentPage')
+      this.$router.push({
+        name: 'quizes',
+        query: {
+          ...queryWithoutPage,
+          cat: val
+        }
+      })
     }
   }
 }
@@ -71,17 +59,23 @@ export default {
     >
       <swiper-slide
         class="border-b-2 category-filter-swiper-slide"
-        :class="selected.includes(cat) ? 'border-black' : 'border-transparent'"
+        :class="selected.includes(cat.id) ? 'border-black' : 'border-transparent'"
         v-for="(cat, index) in categories"
         :key="index"
-        @click="setSelected(cat)"
-        ><p
-          class="font-inter text-sm font-semibold"
-          :class="selected.includes(cat) ? 'text-black' : 'text-gray-500'"
-        >
-          {{ cat }}
-        </p></swiper-slide
       >
+        <label
+          class="font-inter text-sm font-semibold w-fit relative"
+          :class="selected.includes(cat.id) ? 'text-black' : 'text-gray-500'"
+        >
+          {{ cat.title }}
+          <input
+            v-model="selected"
+            class="absolute top-0 left-0 opacity-0"
+            type="checkbox"
+            :value="cat.id"
+          />
+        </label>
+      </swiper-slide>
       <div class="swiper-button-next category-filter-swiper-btn"></div>
       <div class="swiper-button-prev category-filter-swiper-btn"></div>
     </swiper>

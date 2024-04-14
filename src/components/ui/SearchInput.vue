@@ -28,7 +28,7 @@ export default {
   <div
     :class="
       isInputActive
-        ? 'absolute top-0 left-0 w-screen h-screen bg-white my-6 xl:static xl:w-fit xl:h-auto xl:my-0'
+        ? 'absolute top-0 left-0 z-10 w-screen h-screen bg-white py-6 xl:static xl:w-fit xl:h-auto xl:my-0'
         : ''
     "
   >
