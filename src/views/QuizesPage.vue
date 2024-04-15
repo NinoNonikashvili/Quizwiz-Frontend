@@ -13,10 +13,7 @@ export default {
   },
   watch: {
     '$route.query': {
-      handler(newQuery, oldQuery) {
-        console.log(newQuery)
-        console.log(oldQuery)
-
+      handler(newQuery) {
         this.$store.dispatch('quizes/handleLoadQuizes', newQuery)
       },
       deep: true
