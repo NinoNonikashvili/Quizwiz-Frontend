@@ -236,7 +236,10 @@ export default {
       <!-- FILTER OPTIONS -->
       <div class="px-18 pt-6 pb-0 flex flex-col" :class="{ hidden: activeTab === 'sorting' }">
         <!-- QUIZES CHECKBOXES -->
-        <div class="flex flex-col gap-10 pb-5 border-b border-gray-300">
+        <div
+          v-if="this.$store.getters['isUserLoggedIn']"
+          class="flex flex-col gap-10 pb-5 border-b border-gray-300"
+        >
           <div class="flex gap-2 items-center">
             <label class="font-inter font-semibold text-sm text-gray-900">My Quizes</label>
             <div class="relative group">
@@ -510,7 +513,10 @@ export default {
         <div class="w-[61%] border border-gray-300 rounded-xl p-4">
           <h3 class="font-inter font-semibold text-sm text-purple-500 mb-4">Filter by</h3>
           <!-- QUIZES CHECKBOXES -->
-          <div class="flex flex-col gap-4 pb-5 border-b border-gray-300">
+          <div
+            v-if="this.$store.getters['isUserLoggedIn']"
+            class="flex flex-col gap-4 pb-5 border-b border-gray-300"
+          >
             <div class="flex gap-2 items-center">
               <label class="font-inter font-semibold text-sm text-gray-900">My Quizes</label>
               <div class="relative group">
@@ -610,13 +616,13 @@ export default {
           <div class="w-[22.5rem] group relative">
             <div
               class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
-              :class="this.selectedOptions.sort_alphabet === 'asc' ? 'bg-white' : 'bg-gray-200 '"
+              :class="this.selectedOptions.sort_alphabet === 'asc' ? 'bg-gray-200 ' : 'bg-white'"
             >
               <AscIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">A-Z</label>
               <div
                 class="ml-auto"
-                :class="this.selectedOptions.sort_alphabet === 'desc' ? 'inline-block' : 'hidden'"
+                :class="this.selectedOptions.sort_alphabet === 'asc' ? 'inline-block' : 'hidden'"
               >
                 <GreenSelectedIcon />
               </div>
@@ -632,7 +638,7 @@ export default {
           <div class="w-[22.5rem] group relative">
             <div
               class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
-              :class="this.selectedOptions.sort_alphabet === 'desc' ? 'bg-white' : 'bg-gray-200 '"
+              :class="this.selectedOptions.sort_alphabet === 'desc' ? 'bg-gray-200 ' : 'bg-white'"
             >
               <DescIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Z-A</label>
@@ -675,7 +681,7 @@ export default {
           <div class="w-[22.5rem] group relative">
             <div
               class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
-              :class="this.selectedOptions.sort_date === 'desc' ? 'bg-white' : 'bg-gray-200 '"
+              :class="this.selectedOptions.sort_date === 'desc' ? 'bg-gray-200 ' : 'bg-white'"
             >
               <NewestIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Newest</label>
@@ -696,7 +702,8 @@ export default {
           </div>
           <div class="w-[22.5rem] group relative">
             <div
-              class="flex w-full p-3 rounded-lg gap-4 items-center bg-white group-has-[:checked]:bg-gray-200 pointer-events-none"
+              class="flex w-full p-3 rounded-lg gap-4 items-center pointer-events-none"
+              :class="this.selectedOptions.sort_date === 'asc' ? 'bg-gray-200 ' : 'bg-white'"
             >
               <OldestIcon />
               <label class="font-inter font-semibold text-sm leading-6 text-gray-600">Oldest</label>
@@ -710,7 +717,7 @@ export default {
             <input
               type="radio"
               name="sort_date"
-              value="acs"
+              value="asc"
               class="opacity-0 absolute top-0 left-0 w-full h-full p-3"
               v-model="this.selectedOptions.sort_date"
             />

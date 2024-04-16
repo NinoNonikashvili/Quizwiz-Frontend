@@ -60,6 +60,7 @@ export default {
       </RouterLink>
       <!-- Qizes  Quiz page  -->
       <RouterLink
+        activeClass="border border-red"
         :to="{ name: 'quizes' }"
         class="hidden xl:flex font-inter font-semibold text-sm leading-normal text-gray-600"
         >Quizzes</RouterLink
@@ -122,9 +123,14 @@ export default {
       </div>
       <div class="border-b border-gray-300 w-full py-5">
         <RouterLink
+          activeClass="active"
           :to="{ name: 'quizes' }"
-          class="flex font-inter font-semibold text-lg leading-8 text-gray-900"
-          >Quizzes</RouterLink
+          class="group flex gap-2 items-center"
+        >
+          <span class="hidden w-2 h-2 bg-purple-500 rounded-full group-[.active]:block"></span>
+          <span class="font-inter font-semibold text-lg leading-8 text-gray-900"
+            >Quizzes</span
+          ></RouterLink
         >
       </div>
       <!--either login/signup   -->
