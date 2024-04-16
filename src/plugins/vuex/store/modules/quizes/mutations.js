@@ -16,5 +16,11 @@ export default {
   },
   incrementCurrentPage(state) {
     state.currentPage++
+  },
+  setSingleQuiz(state, data) {
+    state.singleQuiz = data
+  },
+  setSimilarQuizes(state, data) {
+    state.similarQuizes = data
   }
 }

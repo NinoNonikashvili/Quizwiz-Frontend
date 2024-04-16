@@ -7,6 +7,7 @@ import LoginPage from '@/views/LoginPage.vue'
 import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import NewPasswordPage from '@/views/NewPasswordPage.vue'
 import store from '@/plugins/vuex/store/index'
+import StartQuizPage from '@/views/StartQuizPage.vue'
 
 const guest = (to, from) => {
   if (store.getters['isUserLoggedIn'] && from.name !== 'home') {
@@ -40,6 +41,7 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomePage },
     { path: '/quizes', name: 'quizes', component: QuizesPage, beforeEnter: [loadQuizes] },
     { path: '/quizes/:id', name: 'quiz', component: QuizPage },
+    { path: '/start-quiz/:id', name: 'start-quiz', component: StartQuizPage },
     { path: '/register', name: 'register', component: RegisterPage, beforeEnter: [guest] },
     { path: '/login', name: 'login', component: LoginPage, beforeEnter: [guest] },
     {

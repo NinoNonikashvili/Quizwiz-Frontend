@@ -1,4 +1,6 @@
 import loadQuizes from '@/services/axios/quizes/loadQuizes'
+import loadSingleQuiz from '@/services/axios/quizes/loadSingleQuiz'
+import loadSimilarQuizes from '@/services/axios/quizes/loadSimilarQuizes'
 
 export default {
   handleLoadQuizes(context, payload = null) {
@@ -20,5 +22,24 @@ export default {
         context.commit('setIsLoading', false)
         console.log(err)
       })
+  },
+  handleLoadSingleQuiz(context, id) {
+    loadSingleQuiz(id)
+      .then((res) => {
+        if (res.data) {
+          context.commit('setSingleQuiz', res.data.data)
+          console.log(res.data.data)
+        }
+      })
+      .catch((err) => console.log('err' + err))
+  },
+  handleLoadSimilarQuizes(context, id) {
+    loadSimilarQuizes(id)
+      .then((res) => {
+        if (res.data) {
+          context.commit('setSimilarQuizes', res.data.data)
+        }
+      })
+      .catch((err) => console.log(err))
   }
 }

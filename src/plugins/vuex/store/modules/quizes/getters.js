@@ -10,5 +10,11 @@ export default {
   },
   getCurrentPage(state) {
     return state.currentPage
+  },
+  getSingleQuiz(state) {
+    return state.singleQuiz
+  },
+  getSimilarQuizes(state) {
+    return state.similarQuizes
   }
 }
