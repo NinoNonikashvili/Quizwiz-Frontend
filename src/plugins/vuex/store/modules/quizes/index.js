@@ -12,7 +12,8 @@ export default {
       currentPage: 1,
       singleQuiz: null,
       similarQuizes: null,
-      quizQuestions: null
+      quizQuestions: null,
+      quizResult: null
     }
   },
   actions: QuizesActions,

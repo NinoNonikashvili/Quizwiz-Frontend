@@ -19,5 +19,8 @@ export default {
   },
   getQuizQuestions(state) {
     return state.quizQuestions
+  },
+  getQuizResult(state) {
+    return state.quizResult
   }
 }

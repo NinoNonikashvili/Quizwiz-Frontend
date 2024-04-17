@@ -2,6 +2,7 @@ import loadQuizes from '@/services/axios/quizes/loadQuizes'
 import loadSingleQuiz from '@/services/axios/quizes/loadSingleQuiz'
 import loadSimilarQuizes from '@/services/axios/quizes/loadSimilarQuizes'
 import loadQuizQuestions from '@/services/axios/quizes/loadQuizQuestions'
+import sendQuizResult from '@/services/axios/quizes/sendQuizResult'
 
 export default {
   handleLoadQuizes(context, payload = null) {
@@ -50,6 +51,14 @@ export default {
           console.log(res.data)
           context.commit('setQuizQuestions', res.data.data)
         }
+      })
+      .catch((err) => console.log(err))
+  },
+  handleSendQuizResult(context, payload) {
+    sendQuizResult(payload)
+      .then((res) => {
+        console.log(res)
+        context.commit('setQuizResult', res.data.data)
       })
       .catch((err) => console.log(err))
   }

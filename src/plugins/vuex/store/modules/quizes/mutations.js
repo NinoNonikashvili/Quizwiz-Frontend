@@ -25,5 +25,8 @@ export default {
   },
   setQuizQuestions(state, data) {
     state.quizQuestions = data
+  },
+  setQuizResult(state, data) {
+    state.quizResult = data
   }
 }
