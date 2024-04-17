@@ -11,7 +11,8 @@ export default {
       isMorePage: true,
       currentPage: 1,
       singleQuiz: null,
-      similarQuizes: null
+      similarQuizes: null,
+      quizQuestions: null
     }
   },
   actions: QuizesActions,

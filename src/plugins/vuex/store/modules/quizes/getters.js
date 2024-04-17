@@ -16,5 +16,8 @@ export default {
   },
   getSimilarQuizes(state) {
     return state.similarQuizes
+  },
+  getQuizQuestions(state) {
+    return state.quizQuestions
   }
 }

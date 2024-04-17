@@ -22,5 +22,8 @@ export default {
   },
   setSimilarQuizes(state, data) {
     state.similarQuizes = data
+  },
+  setQuizQuestions(state, data) {
+    state.quizQuestions = data
   }
 }
