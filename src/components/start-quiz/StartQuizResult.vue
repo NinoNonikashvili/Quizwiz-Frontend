@@ -1,13 +1,8 @@
 <script>
-import ButtonLarge from '@/components/ui/ButtonLarge.vue'
-
 export default {
   props: {
     results: { required: true, type: Array },
     color: String
-  },
-  components: {
-    ButtonLarge
   }
 }
 </script>
@@ -27,8 +22,4 @@ export default {
       {{ result.text }}
     </p>
   </div>
-
-  <RouterLink :to="{ name: 'quizes' }">
-    <ButtonLarge text="Back to home" bg="bg-purple-500" />
-  </RouterLink>
 </template>

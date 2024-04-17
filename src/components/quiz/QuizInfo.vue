@@ -54,7 +54,7 @@ export default {
     <div class="pt-8 md:col-span-4">
       <QuizInfoDetails :details="details" />
       <div class="w-full md:w-[20.875rem]">
-        <RouterLink :to="{ path: '/start-quiz/' + quiz.id }">
+        <RouterLink :to="{ path: '/start-quiz/' + quiz.id }" v-if="!quiz.has_user_written">
           <ButtonLarge text="Start Quiz" bg="bg-purple-500" />
         </RouterLink>
       </div>

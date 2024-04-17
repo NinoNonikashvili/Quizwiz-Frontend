@@ -57,8 +57,8 @@ export default {
   handleSendQuizResult(context, payload) {
     sendQuizResult(payload)
       .then((res) => {
-        console.log(res)
-        context.commit('setQuizResult', res.data.data)
+        console.log(res.data)
+        context.commit('setQuizResult', res.data)
       })
       .catch((err) => console.log(err))
   }

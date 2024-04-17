@@ -76,8 +76,15 @@ export default {
   methods: {
     submit(values) {
       this.isFinished = true
-      let data = { time: this.time.minutes + ':' + this.time.seconds, ...values }
+      let totalTime = (this.quiz.time - this.time.minutes) * 60 - this.time.seconds
+
+      let data = { time: Math.floor(totalTime / 60) + ':' + (totalTime % 60), ...values }
       this.$store.dispatch('quizes/handleSendQuizResult', { id: this.quiz.id, data: data })
+    },
+    leavePage() {
+      this.isFinished = false
+      this.$store.commit('quizes/setQuizResult', null)
+      this.$router.push({ name: 'quizes' })
     }
   },
 
@@ -85,14 +92,13 @@ export default {
     quiz: {
       handler(quiz) {
         if (quiz) {
-          this.time = { minutes: 0, seconds: 10 }
+          this.time = { minutes: quiz.time, seconds: 0 }
         }
       },
       once: true
     },
     time: {
       handler(value) {
-        console.log(value)
         let timer
         if (!this.isFinished && value) {
           if (value.minutes >= 0) {
@@ -181,15 +187,18 @@ export default {
       class="fixed top-0 left-0 w-screen h-screen z-50 bg-[#000000]/70 backdrop-filter backdrop-blur-sm flex items-center justify-center"
     >
       <div class="w-[25rem] p-6 bg-white z-30 flex flex-col">
-        <RouterLink :to="{ name: 'quizes' }" class="w-fit self-end">
-          <CrossIcon />
-        </RouterLink>
+        <!-- <RouterLink :to="{ name: 'quizes' }" class="w-fit self-end"> -->
+        <CrossIcon @click="leavePage" class="w-fit self-end" />
+        <!-- </RouterLink> -->
         <header class="flex flex-col items-center mb-8">
           <ResultModalIcon />
           <h2 class="font-inter font-semibold text-[#101828] text-lg mt-5 mb-2">Quiz finished</h2>
           <h3 class="font-inter font-normal text-gray-600 text-sm">your results</h3>
         </header>
         <StartQuizResult :results="results" />
+        <!-- <RouterLink :to="{ name: 'quizes' }"> -->
+        <ButtonLarge @click="leavePage" text="Back to home" bg="bg-purple-500" />
+        <!-- </RouterLink> -->
       </div>
     </div>
   </div>
