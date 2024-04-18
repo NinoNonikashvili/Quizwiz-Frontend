@@ -28,5 +28,8 @@ export default {
   },
   setQuizResult(state, data) {
     state.quizResult = data
+  },
+  setSearchedQuizes(state, data) {
+    state.searchedQuizes = data
   }
 }

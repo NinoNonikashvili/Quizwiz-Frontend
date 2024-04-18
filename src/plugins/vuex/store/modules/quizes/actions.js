@@ -17,6 +17,9 @@ export default {
         if (payload && 'page' in payload) {
           context.commit('updateQuizes', res.data.data)
         } else {
+          if (payload && 'search' in payload) {
+            context.commit('setSearchedQuizes', true)
+          }
           context.commit('setQuizes', res.data.data)
         }
       })
@@ -25,6 +28,7 @@ export default {
         console.log(err)
       })
   },
+
   handleLoadSingleQuiz(context, id) {
     loadSingleQuiz(id)
       .then((res) => {

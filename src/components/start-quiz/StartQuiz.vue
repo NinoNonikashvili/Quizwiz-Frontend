@@ -44,33 +44,6 @@ export default {
     },
     results() {
       return this.$store.getters['quizes/getQuizResult']
-      // return [
-      //   {
-      //     title: 'Quiz Name',
-      //     text: 'blabla bla',
-      //     color: '#238787'
-      //   },
-      //   {
-      //     title: 'Quiz Level',
-      //     text: 'blabla bla',
-      //     color: '#238787'
-      //   },
-      //   {
-      //     title: 'Time',
-      //     text: '5',
-      //     color: '#238787'
-      //   },
-      //   {
-      //     title: 'Mistake',
-      //     text: '0',
-      //     color: '#238787'
-      //   },
-      //   {
-      //     title: 'Right answers',
-      //     text: '12',
-      //     color: '#238787'
-      //   }
-      // ]
     }
   },
   methods: {
@@ -195,10 +168,31 @@ export default {
           <h2 class="font-inter font-semibold text-[#101828] text-lg mt-5 mb-2">Quiz finished</h2>
           <h3 class="font-inter font-normal text-gray-600 text-sm">your results</h3>
         </header>
-        <StartQuizResult :results="results" />
-        <!-- <RouterLink :to="{ name: 'quizes' }"> -->
+
+        <!-- RESULTS -->
+
+        <StartQuizResult title="Quiz name" :text="quiz.title" color="#000000" :border="true" />
+        <StartQuizResult
+          title="Quiz level"
+          :text="quiz.level.title"
+          :color="quiz.level.color_active"
+          :border="true"
+        />
+        <StartQuizResult title="Time" :text="results.time" color="#000000" :border="true" />
+        <StartQuizResult
+          title="Mistakes"
+          :text="results.correct_answers"
+          color="#12B76A"
+          :border="true"
+        />
+        <StartQuizResult
+          title="Wrong Answers"
+          :text="results.wrong_answers"
+          color="#E64646"
+          :border="false"
+        />
+
         <ButtonLarge @click="leavePage" text="Back to home" bg="bg-purple-500" />
-        <!-- </RouterLink> -->
       </div>
     </div>
   </div>

@@ -13,7 +13,8 @@ export default {
       singleQuiz: null,
       similarQuizes: null,
       quizQuestions: null,
-      quizResult: null
+      quizResult: null,
+      searchedQuizes: false
     }
   },
   actions: QuizesActions,

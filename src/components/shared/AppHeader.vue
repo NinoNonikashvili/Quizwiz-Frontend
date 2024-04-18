@@ -51,7 +51,7 @@ export default {
 
 <template>
   <header
-    class="bg-white px-4 py-4 xl:py-6 xl:px-24 flex justify-between items-center border-b border-gray-300"
+    class="bg-white h-24 px-4 py-4 xl:py-6 xl:px-24 flex justify-between items-center border-b border-gray-300"
   >
     <div class="flex items-center gap-11">
       <!-- Logo home page -->

@@ -22,5 +22,8 @@ export default {
   },
   getQuizResult(state) {
     return state.quizResult
+  },
+  getSearchedQuizes(state) {
+    return state.searchedQuizes
   }
 }

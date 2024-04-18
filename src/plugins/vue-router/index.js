@@ -15,23 +15,31 @@ const guest = (to, from) => {
   }
 }
 const loadQuizes = (to, from) => {
-  console.log(to)
   console.log(from)
+  console.log(to)
+  console.log(from.fullPath, to.fullPath)
 
-  if (!store.getters['getQuizes']) {
-    // handle refresh
-    let params = { ...to.query }
-    if (params.cat && !Array.isArray(params.cat)) {
-      params.cat = [params.cat]
+  if (from.name === undefined) {
+    if (!store.getters['getQuizes']) {
+      // handle refresh
+      let params = { ...to.query }
+      if (params.cat && !Array.isArray(params.cat)) {
+        params.cat = [params.cat]
+      }
+      if (params.level && !Array.isArray(params.level)) {
+        params.level = [params.level]
+      }
+      if (to.query.page) {
+        params.totalPage = to.query.page
+        delete params.page
+      }
+
+      store.dispatch('quizes/handleLoadQuizes', params)
     }
-    if (params.level && !Array.isArray(params.level)) {
-      params.level = [params.level]
+  } else {
+    if (to.fullPath !== '/quizes') {
+      return { ...to, query: {} }
     }
-    if (to.query.page) {
-      params.totalPage = to.query.page
-      delete params.page
-    }
-    store.dispatch('quizes/handleLoadQuizes', params)
   }
 }
 
