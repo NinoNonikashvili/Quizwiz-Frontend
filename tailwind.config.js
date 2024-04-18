@@ -28,6 +28,7 @@ export default {
         'green-100': '#D1FADF',
         'red-100': '#FDA29B',
         'red-500': '#F04438',
+        'pink-500': '#E72A8B',
         'success-500': '#01E17B',
         'error-500': '#F04349',
         'warning-500': '#FFD21F',

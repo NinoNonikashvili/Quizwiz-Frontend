@@ -27,7 +27,9 @@ export default {
 <template>
   <div class="py-10 flex gap-8 flex-wrap" v-if="this.$store.getters['quizes/getQuizes']">
     <div v-for="(quiz, index) in this.$store.getters['quizes/getQuizes']" :key="index">
-      <QuizCard :quiz="quiz" />
+      <RouterLink :to="{ path: 'quizes/' + quiz.id }">
+        <QuizCard :quiz="quiz" />
+      </RouterLink>
     </div>
   </div>
   <div class="mb-16 mx-auto w-fit">

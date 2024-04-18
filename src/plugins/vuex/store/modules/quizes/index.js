@@ -9,7 +9,12 @@ export default {
       quizes: [],
       isLoading: false,
       isMorePage: true,
-      currentPage: 1
+      currentPage: 1,
+      singleQuiz: null,
+      similarQuizes: null,
+      quizQuestions: null,
+      quizResult: null,
+      searchedQuizes: false
     }
   },
   actions: QuizesActions,

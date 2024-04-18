@@ -1,4 +1,8 @@
 import loadQuizes from '@/services/axios/quizes/loadQuizes'
+import loadSingleQuiz from '@/services/axios/quizes/loadSingleQuiz'
+import loadSimilarQuizes from '@/services/axios/quizes/loadSimilarQuizes'
+import loadQuizQuestions from '@/services/axios/quizes/loadQuizQuestions'
+import sendQuizResult from '@/services/axios/quizes/sendQuizResult'
 
 export default {
   handleLoadQuizes(context, payload = null) {
@@ -13,6 +17,9 @@ export default {
         if (payload && 'page' in payload) {
           context.commit('updateQuizes', res.data.data)
         } else {
+          if (payload && 'search' in payload) {
+            context.commit('setSearchedQuizes', true)
+          }
           context.commit('setQuizes', res.data.data)
         }
       })
@@ -20,5 +27,43 @@ export default {
         context.commit('setIsLoading', false)
         console.log(err)
       })
+  },
+
+  handleLoadSingleQuiz(context, id) {
+    loadSingleQuiz(id)
+      .then((res) => {
+        if (res.data) {
+          context.commit('setSingleQuiz', res.data.data)
+          console.log(res.data.data)
+        }
+      })
+      .catch((err) => console.log('err' + err))
+  },
+  handleLoadSimilarQuizes(context, id) {
+    loadSimilarQuizes(id)
+      .then((res) => {
+        if (res.data) {
+          context.commit('setSimilarQuizes', res.data.data)
+        }
+      })
+      .catch((err) => console.log(err))
+  },
+  handleLoadQuizQuestions(context, id) {
+    loadQuizQuestions(id)
+      .then((res) => {
+        if (res.data) {
+          console.log(res.data)
+          context.commit('setQuizQuestions', res.data.data)
+        }
+      })
+      .catch((err) => console.log(err))
+  },
+  handleSendQuizResult(context, payload) {
+    sendQuizResult(payload)
+      .then((res) => {
+        console.log(res.data)
+        context.commit('setQuizResult', res.data)
+      })
+      .catch((err) => console.log(err))
   }
 }

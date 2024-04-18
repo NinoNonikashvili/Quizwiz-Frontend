@@ -19,7 +19,6 @@ export default {
   data() {
     return {
       modules: [Navigation, Autoplay],
-      quizes: [1, 2, 3, 4],
       direction: this.setDirection()
     }
   },
@@ -36,6 +35,12 @@ export default {
   },
   unmounted() {
     window.removeEventListener('resize', this.changeDirection)
+  },
+
+  computed: {
+    quizes() {
+      return this.$store.getters['quizes/getSimilarQuizes']
+    }
   }
 }
 </script>
@@ -65,7 +70,9 @@ export default {
         :key="index"
         class="border border-gray-300 quiz-swiper-slide"
       >
-        <QuizCard />
+        <RouterLink :to="{ path: '/quizes/' + quiz.id }">
+          <QuizCard :quiz="quiz" />
+        </RouterLink>
       </swiper-slide>
       <div class="swiper-button-next quiz-swiper-btn"></div>
       <div class="swiper-button-prev quiz-swiper-btn"></div>
