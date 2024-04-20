@@ -8,6 +8,8 @@ import ResetPasswordPage from '@/views/ResetPasswordPage.vue'
 import NewPasswordPage from '@/views/NewPasswordPage.vue'
 import store from '@/plugins/vuex/store/index'
 import StartQuizPage from '@/views/StartQuizPage.vue'
+import FrontErrorPage from '@/views/FrontErrorPage.vue'
+import ServerErrorPage from '@/views/ServerErrorPage.vue'
 
 const guest = (to, from) => {
   if (store.getters['isUserLoggedIn'] && from.name !== 'home') {
@@ -15,10 +17,6 @@ const guest = (to, from) => {
   }
 }
 const loadQuizes = (to, from) => {
-  console.log(from)
-  console.log(to)
-  console.log(from.fullPath, to.fullPath)
-
   if (from.name === undefined) {
     if (!store.getters['getQuizes']) {
       // handle refresh
@@ -69,6 +67,16 @@ const router = createRouter({
       name: 'newPass',
       component: NewPasswordPage,
       beforeEnter: [guest]
+    },
+    {
+      path: '/:wrongUrl',
+      name: 'wrongUrl',
+      component: FrontErrorPage
+    },
+    {
+      path: '/internal-error',
+      name: 'internalError',
+      component: ServerErrorPage
     }
   ]
 })

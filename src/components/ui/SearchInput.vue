@@ -24,7 +24,6 @@ export default {
           delete query.search
         }
         this.$router.push({ name: 'quizes', query: { ...query } })
-        console.log(key)
       }, 1000)
     }
   },

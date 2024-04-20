@@ -5,6 +5,7 @@ import UserIcon from '@/components/icons/UserIcon.vue'
 import SearchInput from '@/components/ui/SearchInput.vue'
 import LogoutIcon from '../icons/LogoutIcon.vue'
 import CrossIcon from '@/components/icons/CrossIcon.vue'
+import ToastSuccess from '@/components/shared/toast/ToastSuccess.vue'
 
 export default {
   props: ['hasSearch'],
@@ -21,7 +22,8 @@ export default {
     UserIcon,
     SearchInput,
     LogoutIcon,
-    CrossIcon
+    CrossIcon,
+    ToastSuccess
   },
   computed: {
     auth() {
@@ -206,4 +208,9 @@ export default {
       </div>
     </div>
   </header>
+  <ToastSuccess
+    v-if="this.$store.getters['errors/getErrorStatus'] === 'LOGOUT_SUCCESS'"
+    :text="this.$store.getters['errors/getErrorText']"
+    :header="this.$store.getters['errors/getErrorTitle']"
+  />
 </template>

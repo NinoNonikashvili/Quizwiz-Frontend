@@ -38,4 +38,14 @@ export default {
     </div>
     <ErrorMessage :name="name" class="font-inter font-normal text-sm text-red-500" />
   </div>
+  <!-- SERVER ERRORS -->
+  <div
+    v-if="
+      this.$store.getters['errors/getErrorStatus'] === 'LOGIN_WRONG_INPUT' ||
+      this.$store.getters['errors/getErrorStatus'] === 'REGISTRATION_WRONG_INPUT'
+    "
+    class="font-inter font-normal text-sm text-red-500"
+  >
+    {{ this.$store.getters['errors/getErrorText'] }}
+  </div>
 </template>

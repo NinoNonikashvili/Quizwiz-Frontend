@@ -1,5 +1,6 @@
 <script>
 import IconSuccess from '@/components/icons/IconSuccess.vue'
+import toast from '@/mixins/toast'
 
 export default {
   components: {
@@ -8,6 +9,10 @@ export default {
   props: {
     text: { required: true, type: String },
     header: { required: true, type: String }
+  },
+  mixins: [toast],
+  mounted() {
+    this.resetErrorState()
   }
 }
 </script>
