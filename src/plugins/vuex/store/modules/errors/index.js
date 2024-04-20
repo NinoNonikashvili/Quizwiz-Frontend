@@ -6,12 +6,9 @@ export default {
   namespaced: true,
   state() {
     return {
-      serverErrors: {
-        login: {
-          code: null,
-          message: null
-        }
-      }
+      status: null,
+      title: null,
+      text: null
     }
   },
   actions: Erroractions,

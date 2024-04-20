@@ -1,12 +1,14 @@
 <script>
 import FormComponent from '@/components/login/FormComponent.vue'
 import AuthLayout from '@/components/shared/AuthLayout.vue'
+import ToastSuccess from '@/components/shared/toast/ToastSuccess.vue'
 import ToastWarning from '@/components/shared/toast/ToastWarning.vue'
 
 export default {
   components: {
     FormComponent,
     AuthLayout,
+    ToastSuccess,
     ToastWarning
   },
   data() {
@@ -43,17 +45,25 @@ export default {
     <AuthLayout page="login">
       <FormComponent @set-email="onSetEmail" />
     </AuthLayout>
-    <div>{{ $route.params }}</div>
-    <div>{{ new Date($route.query.expires * 1000) }}</div>
-    <div @click="send">send again</div>
+
     <ToastWarning
-      v-if="this.$store.getters['errors/getLoginErrorCode'] === 403"
-      :text="this.$store.getters['errors/getLoginErrorMessage']"
-      header="Token Expired!"
+      v-if="this.$store.getters['errors/getErrorStatus'] === 'VERIFICATION_LINK_EXPIRED'"
+      :text="this.$store.getters['errors/getErrorText']"
+      :header="this.$store.getters['errors/getErrorTitle']"
     >
       <button class="text-white border border-whiter rounded-xl px-2 py-1 mt-2" @click="send">
         send again
       </button>
     </ToastWarning>
+    <ToastWarning
+      v-if="this.$store.getters['errors/getErrorStatus'] === 'NOT_VERIFIED'"
+      :text="this.$store.getters['errors/getErrorText']"
+      :header="this.$store.getters['errors/getErrorTitle']"
+    />
+    <ToastSuccess
+      v-if="this.$store.getters['errors/getErrorStatus'] === 'VERIFICATION_LINK_SENT'"
+      :text="this.$store.getters['errors/getErrorText']"
+      :header="this.$store.getters['errors/getErrorTitle']"
+    />
   </div>
 </template>

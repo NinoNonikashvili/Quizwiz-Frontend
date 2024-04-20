@@ -3,15 +3,13 @@ import verifyEmail from '@/services/axios/email/verifyEmail'
 
 export default {
   verify(context, url) {
-    verifyEmail(url).then((result) => {
-      console.log(result)
+    verifyEmail(url).then(() => {
+      context.commit('setIsEmailVerified', true)
     })
-    context.commit('setIsEmailVerified', true)
   },
   sendEmailAgain(context, url) {
-    sendAgain(url).then((result) => {
-      console.log(result)
+    sendAgain(url).then(() => {
+      context.commit('setIsEmailVerified', true)
     })
-    context.commit('setIsEmailVerified', true)
   }
 }

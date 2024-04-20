@@ -3,6 +3,7 @@ import loadSingleQuiz from '@/services/axios/quizes/loadSingleQuiz'
 import loadSimilarQuizes from '@/services/axios/quizes/loadSimilarQuizes'
 import loadQuizQuestions from '@/services/axios/quizes/loadQuizQuestions'
 import sendQuizResult from '@/services/axios/quizes/sendQuizResult'
+import router from '@/plugins/vue-router/index'
 
 export default {
   handleLoadQuizes(context, payload = null) {
@@ -23,9 +24,8 @@ export default {
           context.commit('setQuizes', res.data.data)
         }
       })
-      .catch((err) => {
+      .catch(() => {
         context.commit('setIsLoading', false)
-        console.log(err)
       })
   },
 
@@ -34,10 +34,9 @@ export default {
       .then((res) => {
         if (res.data) {
           context.commit('setSingleQuiz', res.data.data)
-          console.log(res.data.data)
         }
       })
-      .catch((err) => console.log('err' + err))
+      .catch(() => router.push({ name: 'home' }))
   },
   handleLoadSimilarQuizes(context, id) {
     loadSimilarQuizes(id)
@@ -46,24 +45,22 @@ export default {
           context.commit('setSimilarQuizes', res.data.data)
         }
       })
-      .catch((err) => console.log(err))
+      .catch(() => router.push({ name: 'home' }))
   },
   handleLoadQuizQuestions(context, id) {
     loadQuizQuestions(id)
       .then((res) => {
         if (res.data) {
-          console.log(res.data)
           context.commit('setQuizQuestions', res.data.data)
         }
       })
-      .catch((err) => console.log(err))
+      .catch(() => router.push({ name: 'home' }))
   },
   handleSendQuizResult(context, payload) {
     sendQuizResult(payload)
       .then((res) => {
-        console.log(res.data)
         context.commit('setQuizResult', res.data)
       })
-      .catch((err) => console.log(err))
+      .catch(() => router.push({ name: 'home' }))
   }
 }

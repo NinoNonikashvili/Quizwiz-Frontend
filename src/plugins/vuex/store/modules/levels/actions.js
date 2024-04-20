@@ -1,4 +1,5 @@
 import getLevels from '@/services/axios/getLevels'
+import router from '@/plugins/vue-router'
 
 export default {
   handleGetLevels(context) {
@@ -6,6 +7,6 @@ export default {
       .then((res) => {
         context.commit('setLevels', res.data)
       })
-      .catch((err) => console.log(err))
+      .catch(() => router.push({ name: 'home' }))
   }
 }

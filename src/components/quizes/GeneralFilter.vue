@@ -27,7 +27,6 @@ export default {
       searchKeyword: '',
       debounceReturn: this.debounce((key) => {
         this.searchKeyword = key
-        console.log(key)
       }, 500)
     }
   },
@@ -47,7 +46,6 @@ export default {
       } else {
         this.selectedOptions.level.splice(this.selectedOptions.level.indexOf(level), 1)
       }
-      console.log(this.selectedOptions)
     },
     setCategory(cat) {
       if (!this.selectedOptions.cat.includes(cat)) {
@@ -65,7 +63,6 @@ export default {
       this.selectedOptions.sort_alphabet = null
       this.selectedOptions.sort_popular = false
       this.selectedOptions.sort_date = null
-      console.log(callback)
       if (callback !== null) {
         callback()
       }
@@ -103,7 +100,6 @@ export default {
           ...query
         }
       })
-      console.log(this.selectedOptions)
     }
   },
   mounted() {
@@ -134,7 +130,6 @@ export default {
           value !== '' &&
           (Array.isArray(value) ? value.length !== 0 : true)
       ).length
-      console.log('filter count', truthyValues)
       return truthyValues
     }
   },

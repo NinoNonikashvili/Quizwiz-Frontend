@@ -1,8 +1,11 @@
 export default {
-  getLoginErrorCode(state) {
-    return state.serverErrors.login.code
+  getErrorStatus(state) {
+    return state.status
   },
-  getLoginErrorMessage(state) {
-    return state.serverErrors.login.message
+  getErrorTitle(state) {
+    return state.title
+  },
+  getErrorText(state) {
+    return state.text
   }
 }

@@ -1,25 +1,49 @@
 export default {
-  setLoginError(state, code) {
-    state.serverErrors.login.code = code
-    let message
-    switch (code) {
-      case 200:
-        message = null
-        state.serverErrors.login.code = null
+  setError(state, payload) {
+    state.status = payload.status
+    switch (payload.status) {
+      case 'VERIFICATION_LINK_SENT':
+        state.title = 'Verify Email'
+        state.text = 'check email to verify account'
         break
-      case 401:
-        message = '401 needs to be solved'
+      case 'REGISTRATION_WRONG_INPUT':
+        state.text = payload.text
         break
-      case 403:
-        message = 'verification link has expired!'
+      case 'VERIFICATION_LINK_EXPIRED':
+        state.title = 'Link Expired'
+        state.text = 'verification link expired'
         break
-      case 404:
-        message = 'user not found!'
+
+      case 'LOGIN_WRONG_INPUT':
+        state.text = payload.text
+        break
+      case 'LOGIN_SUCCESS':
+        state.title = 'Success!'
+        state.text = 'you have logged in successfully'
+        break
+      case 'RESET_LINK_SENT':
+        state.title = 'Check Email'
+        state.text = 'reset link was sent'
+        break
+      case 'RESET_LINK_EXPIRED':
+        state.title = 'Link Expired'
+        state.text = 'password reset link expired'
+        break
+      case 'RESET_SUCCESS':
+        state.title = 'Success!'
+        state.text = 'password changed successfully'
+        break
+      case 'LOGOUT_SUCCESS':
+        state.title = 'Success!'
+        state.text = 'logged out successfully'
+        break
+      case 'NOT_VERIFIED':
+        state.title = 'Email not verified!'
+        state.title = 'check email to verify.'
         break
       default:
-        message = 'unknown error occured'
-        break
+        state.title = null
+        state.title = null
     }
-    state.serverErrors.login.message = message
   }
 }

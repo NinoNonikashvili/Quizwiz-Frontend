@@ -31,14 +31,7 @@ export default {
   }),
   methods: {
     submit(values) {
-      console.log(values)
       this.$store.dispatch('signup/signup', values)
-    },
-    checkboxVal(val) {
-      console.log(val.target.value)
-    },
-    test(values) {
-      console.log(values)
     }
   }
 }

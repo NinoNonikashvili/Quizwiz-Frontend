@@ -36,9 +36,7 @@ export default {
         <ErrorIcon />
       </div>
     </div>
-    <!-- <span v-if="errorMessage" class="font-inter font-normal text-sm text-red-500">{{
-        errorMessage
-      }}</span> -->
+
     <ErrorMessage :name="name" class="font-inter font-normal text-sm text-red-500" />
   </div>
 </template>

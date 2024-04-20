@@ -20,8 +20,6 @@ export default {
   }),
   methods: {
     submit(values) {
-      console.log(values)
-      console.log(this.$route.query)
       let data = {
         email: this.$route.query.email,
         token: this.$route.query.token,

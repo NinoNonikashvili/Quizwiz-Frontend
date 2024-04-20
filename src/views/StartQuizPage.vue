@@ -8,13 +8,11 @@ export default {
   },
   mounted() {
     let id = this.$route.params.id
-    console.log('mounted')
     this.$store.dispatch('quizes/handleLoadQuizQuestions', id)
     store.dispatch('quizes/handleLoadSingleQuiz', id)
   },
   beforeRouteEnter(to) {
     let id = to.params.id
-    console.log('updated')
     if (!store.getters['quizes/getSingleQuiz']) {
       store.dispatch('quizes/handleLoadQuizQuestions', id)
       store.dispatch('quizes/handleLoadSingleQuiz', id)

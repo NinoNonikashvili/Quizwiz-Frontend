@@ -5,55 +5,38 @@ import checkAuth from '@/services/axios/checkAuth'
 
 export default {
   login(context, data) {
-    console.log('log in request')
     login(data)
       .then((res) => {
-        if (res.statusText === 'OK') {
-          context.commit('setLoggedInState', true)
-          context.commit('setUser', res.data.data)
-          context.commit('errors/setLoginError', res.status)
-          console.log('logged in')
-          router.push({ name: 'home' })
-        } else {
-          console.log('response not ok' + res.status, res)
-          context.commit('errors/setLoginError', res.status)
-          context.commit('setLoggedInState', false)
-        }
+        context.commit('setLoggedInState', true)
+        context.commit('setUser', res.data.data)
+        router.push({ name: 'home' })
       })
-      .catch((err) => {
-        console.log('some other error', err.code)
-        context.commit('errors/setLoginError', err.code)
+      .catch(() => {
         context.commit('setLoggedInState', false)
       })
   },
 
   logout(context) {
     logout()
-      .then((res) => {
-        if (res.statusText === 'OK') {
-          context.commit('setLoggedInState', false)
-          context.commit('setUser', null)
-          router.push({ name: 'home' })
-          console.log('logged out')
-        } else {
-          console.log(res.status, res.statusText)
-        }
+      .then(() => {
+        context.commit('setLoggedInState', false)
+        context.commit('setUser', null)
+        router.push({ name: 'home' })
       })
-      .catch((err) => {
-        console.log(err.code)
+      .catch(() => {
         context.commit('setLoggedInState', false)
       })
   },
   handleCheckAuth(context) {
     checkAuth()
       .then((res) => {
-        if (res.statusText === 'OK' && res.data) {
+        if (res.data.data) {
           context.commit('setLoggedInState', true)
-          context.commit('setUser', res.data.data)
         } else {
-          console.log(res.status, res.statusText)
+          context.commit('setLoggedInState', false)
         }
+        context.commit('setUser', res.data.data)
       })
-      .catch((err) => console.log(err.code))
+      .catch(() => router.push({ name: 'home' }))
   }
 }

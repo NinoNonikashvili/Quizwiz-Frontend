@@ -1,4 +1,5 @@
 import getCategories from '@/services/axios/getCategories'
+import router from '@/plugins/vue-router'
 
 export default {
   handleGetCategories(context) {
@@ -6,6 +7,6 @@ export default {
       .then((res) => {
         context.commit('setCategories', res.data)
       })
-      .catch((err) => console.log(err))
+      .catch(() => router.push({ name: 'home' }))
   }
 }
