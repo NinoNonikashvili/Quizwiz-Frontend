@@ -14,8 +14,6 @@ export default {
 
 <template>
   <AuthLayout page="register">
-    {{ 'status: ' + this.$store.getters['errors/getErrorStatus'] }}
-
     <FormComponent />
   </AuthLayout>
   <ToastSuccess

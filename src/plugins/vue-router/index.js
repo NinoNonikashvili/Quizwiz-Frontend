@@ -36,6 +36,7 @@ const loadQuizes = (to, from) => {
     }
   } else {
     if (to.fullPath !== '/quizes') {
+      store.dispatch('quizes/handleLoadQuizes', {})
       return { ...to, query: {} }
     }
   }
