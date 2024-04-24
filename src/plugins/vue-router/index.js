@@ -39,6 +39,7 @@ const loadQuizes = (to, from) => {
       store.dispatch('quizes/handleLoadQuizes', {})
       return { ...to, query: {} }
     }
+    store.dispatch('quizes/handleLoadQuizes', {})
   }
 }
 
