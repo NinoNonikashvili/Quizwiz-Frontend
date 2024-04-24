@@ -7,9 +7,9 @@ export default {
     LogoIcon
   },
   mounted() {
-    if (!this.$store.getters['footer/getFooterData']) {
-      this.$store.dispatch('footer/handleFooterRequest')
-    }
+    // if (!this.$store.getters['footer/getFooterData']) {
+    //   this.$store.dispatch('footer/handleFooterRequest')
+    // }
   },
   computed: {
     email() {
