@@ -4,8 +4,9 @@
 </div>
 
 ---
-E Space Mobile App helps people to find e-car charger nearby and charge their electric cars easily.
-E Space also gives opportunity to business with giving them **Business Module** that gives people opportunity to have their own chargers and to make use of **Business Module** service to manage those chargers: create tariffs, monitor them, have analytical dashboard and more...
+Quizwiz is a platform where users can write quizes from various categories and levels. 
+Users can also register on quizwiz and save their results and progress.
+This particular repository holds frontend code for this app.
 
 #
 ### Table of Contents
