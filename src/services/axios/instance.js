@@ -3,7 +3,7 @@ import router from '@/plugins/vue-router'
 import store from '@/plugins/vuex/store/index'
 const instance = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
-  timeout: 1000,
+  timeout: 3000,
   withCredentials: true,
   withXSRFToken: true,
   headers: {
@@ -20,6 +20,7 @@ instance.interceptors.response.use(
   },
   function (error) {
     if (error.code === 'ECONNABORTED' || error.response.status === 500) {
+      console.log(error)
       router.push({ name: 'internalError' })
     }
     if (error.response && error.response.data && error.response.data.status) {
