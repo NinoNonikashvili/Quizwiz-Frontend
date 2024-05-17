@@ -139,7 +139,7 @@ export default {
       </VeeForm>
       <!-- TIMER -->
       <div
-        class="hidden xl:block px-12 pb-8 pt-12 shadow-xl fixed top-[20rem] right-24 bg-white z-10 rounded-lg"
+        class="hidden xl:flex flex-col w-[24.5rem] items-center px-12 pb-8 pt-12 shadow-xl fixed top-[20rem] right-24 bg-white z-10 rounded-lg"
       >
         <div
           class="border border-gray-300 py-2 px-10 shadow-lg absolute left-0 right-0 mx-auto w-fit rounded-md -top-2"
@@ -150,7 +150,7 @@ export default {
         <p class="font-inter font-normal text-gray-600 text-[60px]">
           {{ time.minutes }} : {{ time.seconds }}
         </p>
-        <div class="mt-8 border-b border-gray-300"></div>
+        <div class="my-8 border-b h-[0.0625rem] w-full bg-gray-300"></div>
         <ButtonLarge text="submit" bg="bg-purple-500" type="submit" :form="quiz.id" />
       </div>
     </div>
