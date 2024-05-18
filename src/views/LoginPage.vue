@@ -3,6 +3,7 @@ import FormComponent from '@/components/login/FormComponent.vue'
 import AuthLayout from '@/components/shared/AuthLayout.vue'
 import ToastSuccess from '@/components/shared/toast/ToastSuccess.vue'
 import ToastWarning from '@/components/shared/toast/ToastWarning.vue'
+import clearServerErrors from '@/mixins/clearServerErrors'
 
 export default {
   components: {
@@ -26,7 +27,11 @@ export default {
       this.$store.dispatch('verifyEmail/verify', url)
     }
   },
-
+  mixins: [clearServerErrors],
+  beforeRouteLeave() {
+    this.clearServerError()
+    return true
+  },
   methods: {
     send() {
       const user_identificator = this.id ? this.id : this.email

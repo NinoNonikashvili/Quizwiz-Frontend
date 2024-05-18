@@ -2,12 +2,18 @@
 import FormComponent from '@/components/register/FormComponent.vue'
 import AuthLayout from '@/components/shared/AuthLayout.vue'
 import ToastSuccess from '@/components/shared/toast/ToastSuccess.vue'
+import clearServerErrors from '@/mixins/clearServerErrors'
 
 export default {
   components: {
     FormComponent,
     AuthLayout,
     ToastSuccess
+  },
+  mixins: [clearServerErrors],
+  beforeRouteLeave() {
+    this.clearServerError()
+    return true
   }
 }
 </script>
