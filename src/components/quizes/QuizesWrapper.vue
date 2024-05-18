@@ -32,7 +32,7 @@ export default {
       </RouterLink>
     </div>
   </div>
-  <div class="mb-16 mx-auto w-fit">
+  <div class="mb-16 mx-auto w-fit" v-if="this.$store.getters['quizes/getIsMorePage']">
     <ButtonLoadMore @click="updatePageQueryParam" />
   </div>
 </template>

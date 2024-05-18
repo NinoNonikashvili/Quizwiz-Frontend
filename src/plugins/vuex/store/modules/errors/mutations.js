@@ -39,11 +39,11 @@ export default {
         break
       case 'NOT_VERIFIED':
         state.title = 'Email not verified!'
-        state.title = 'check email to verify.'
+        state.text = 'check email to verify.'
         break
       default:
         state.title = null
-        state.title = null
+        state.text = null
     }
   }
 }
