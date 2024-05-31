@@ -94,6 +94,8 @@ export default {
       if (my_quizes !== null) {
         query.my_quizes = my_quizes
       }
+      //reset page to 1
+      this.$store.commit('quizes/resetCurrentPage')
       this.$router.push({
         name: 'quizes',
         query: {
