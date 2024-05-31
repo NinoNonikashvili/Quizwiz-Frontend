@@ -9,9 +9,13 @@ export default {
   },
 
   mounted() {
-    if (this.$route.query.page && this.$route.query.page !== this.page) {
-      this.page = this.$route.query.page
+    let page = this.$store.getters['quizes/getCurrentPage']
+    console.log(page)
+    if (page && page !== 1) {
+      let pageQuery = { page: page }
+      this.$router.push({ name: 'quizes', query: { ...this.$route.query, ...pageQuery } })
     }
+    console.log(page)
   },
 
   methods: {
