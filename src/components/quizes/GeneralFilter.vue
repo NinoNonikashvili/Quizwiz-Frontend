@@ -30,6 +30,44 @@ export default {
       }, 500)
     }
   },
+
+
+  watch: {
+  
+    'selectedOptions.sort_alphabet': {
+      handler(newVal, oldVal) {
+        console.log(newVal, oldVal)
+
+        if (newVal !== null && oldVal === null) {
+          console.log('alph changed')
+          this.selectedOptions.sort_date = null
+          this.selectedOptions.sort_popular = null
+        }
+      }
+    },
+    'selectedOptions.sort_date': {
+      handler(newVal, oldVal) {
+        console.log(newVal, oldVal)
+
+        if (newVal !== null && oldVal === null) {
+          console.log('alph changed')
+          this.selectedOptions.sort_alphabet = null
+          this.selectedOptions.sort_popular = null
+        }
+      }
+    },
+    'selectedOptions.sort_popular': {
+      handler(newVal, oldVal) {
+        console.log(newVal, oldVal)
+
+        if (newVal !== null && oldVal === null) {
+          console.log('alph changed')
+          this.selectedOptions.sort_date = null
+          this.selectedOptions.sort_alphabet = null
+        }
+      }
+    }
+  },
   methods: {
     openFilter() {
       this.filterActive = true
