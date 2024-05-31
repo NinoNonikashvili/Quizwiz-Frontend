@@ -26,6 +26,9 @@ instance.interceptors.response.use(
     if (error.response && error.response.data && error.response.data.status) {
       store.commit('errors/setError', error.response.data)
     }
+    if(error.response.status===401 ||error.response.status===419){
+      router.push({name: 'home'})
+    }
 
     return
   }
