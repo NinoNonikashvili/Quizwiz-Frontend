@@ -18,6 +18,16 @@ export default {
     let id = this.$route.params.id
     this.$store.dispatch('quizes/handleLoadSingleQuiz', id)
     this.$store.dispatch('quizes/handleLoadSimilarQuizes', id)
+  },
+  created() {
+    this.$watch(
+      () => this.$route.params.id,
+      (newId) => {
+        // react to route changes...
+        this.$store.dispatch('quizes/handleLoadSingleQuiz', newId)
+        this.$store.dispatch('quizes/handleLoadSimilarQuizes', newId)
+      }
+    )
   }
 }
 </script>
