@@ -78,7 +78,7 @@ export default {
         <!-- DIFFICULTY LEVEL -->
         <div class="flex gap-3 items-center">
           <QuizCardDetailIcon
-            :bg="'bg-[' + quiz.level.bg_active + ']'"
+            :bg="quiz.level.bg_active"
             icon="QuizCardLevelIcon"
             :color="quiz.level.color_active"
           />
