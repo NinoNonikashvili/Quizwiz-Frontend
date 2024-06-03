@@ -31,9 +31,7 @@ export default {
     }
   },
 
-
   watch: {
-  
     'selectedOptions.sort_alphabet': {
       handler(newVal, oldVal) {
         console.log(newVal, oldVal)
@@ -327,13 +325,11 @@ export default {
                 this.searchKeyword.length !== 0 &&
                 !level.title.toLowerCase().includes(searchKeyword.toLowerCase())
                   ? 'hidden '
-                  : ' ',
-                this.selectedOptions.level.includes(level.id)
-                  ? 'bg-[' + level.bg + ']'
-                  : 'bg-[' + level.bg + ']'
+                  : ' '
               ]"
               :style="{
-                color: this.selectedOptions.level.includes(level.id) ? 'white' : level.color_active
+                color: this.selectedOptions.level.includes(level.id) ? 'white' : level.color_active,
+                backgroundColor: this.selectedOptions.level.includes(level.id) ? level.bg : level.bg
               }"
               @click="setLevel(level.id)"
             >
@@ -604,15 +600,15 @@ export default {
                   this.searchKeyword.length !== 0 &&
                   !level.title.toLowerCase().includes(searchKeyword.toLowerCase())
                     ? 'hidden '
-                    : ' ',
-                  this.selectedOptions.level.includes(level.id)
-                    ? 'bg-[' + level.bg + ']'
-                    : 'bg-[' + level.bg + ']'
+                    : ' '
                 ]"
                 :style="{
                   color: this.selectedOptions.level.includes(level.id)
                     ? 'white'
-                    : level.color_active
+                    : level.color_active,
+                  backgroundColor: this.selectedOptions.level.includes(level.id)
+                    ? level.bg
+                    : level.bg
                 }"
                 @click="setLevel(level.id)"
               >
