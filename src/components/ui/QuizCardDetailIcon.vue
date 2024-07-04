@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-10 h-10 rounded-full flex justify-center items-center" :class="bg">
+  <div class="w-10 h-10 rounded-full flex justify-center items-center" :style="{backgroundColor: bg}">
     <component :is="icon" :color="color"></component>
   </div>
 </template>

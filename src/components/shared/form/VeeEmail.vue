@@ -1,6 +1,7 @@
 <script>
 import { Field, ErrorMessage } from 'vee-validate'
 import ErrorIcon from '@/components/icons/ErrorIcon.vue'
+import clearServerErrors from '@/mixins/clearServerErrors';
 
 export default {
   components: {
@@ -13,7 +14,10 @@ export default {
     id: { type: String, required: true },
     label: { type: String, required: true },
     errors: { type: Object, required: true }
-  }
+  },
+
+  mixins: [clearServerErrors],
+
 }
 </script>
 
@@ -24,6 +28,7 @@ export default {
     }}</label>
     <div class="w-full relative">
       <Field
+        @input="clearServerError"
         :name="name"
         :id="id"
         type="email"

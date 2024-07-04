@@ -42,10 +42,13 @@ export default {
         this.showLogoutOffcanvas = false
         window.removeEventListener('click', this.handleLogoutOffcanvasOutClick)
       }
+      console.log('out', this.showLogoutOffcanvas)
     },
     setShowLogoutOffcanvas() {
+      
       window.addEventListener('click', this.handleLogoutOffcanvasOutClick)
       this.showLogoutOffcanvas = true
+      console.log('here', this.showLogoutOffcanvas)
     }
   }
 }
@@ -100,7 +103,7 @@ export default {
           </RouterLink>
         </div>
         <!-- or user icon -->
-        <div @click="setShowLogoutOffcanvas" v-if="auth">
+        <div @click.stop="setShowLogoutOffcanvas" v-if="auth">
           <!-- show default avatar or user avatar -->
           <div v-if="false">
             <UserIcon />
@@ -184,9 +187,10 @@ export default {
       </div>
     </div>
     <!-- logout offcanvas -->
+ 
     <div
       v-if="showLogoutOffcanvas"
-      class="absolute z-10 top-5 right-24 w-80 h-40 px-4 py-8 flex flex-col justify-between bg-white border border-gray-300 rounded-lg"
+      class="absolute z-50 top-5 right-24 w-80 h-40 px-4 py-8 flex flex-col justify-between bg-white border border-gray-300 rounded-lg"
     >
       <img
         src="../../assets/images/Avatar.png"

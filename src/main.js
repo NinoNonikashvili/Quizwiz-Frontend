@@ -1,4 +1,6 @@
 import './assets/main.css'
+import '@/plugins/vee-validate/rules'
+import '@/plugins/vee-validate'
 import store from '@/plugins/vuex/store/index'
 import router from '@/plugins/vue-router/index'
 

@@ -1,11 +1,13 @@
 <script>
 import { Form as VeeForm } from 'vee-validate'
-import '@/plugins/vee-validate/rules'
 import VeePassword from '@/components/shared/form/VeePassword.vue'
 import VeeSubmitBtn from '@/components/shared/form/VeeSubmitBtn.vue'
 import VeeEmail from '@/components/shared/form/VeeEmail.vue'
 import VeeCheckbox from '@/components/shared/form/VeeCheckbox.vue'
 import VeeText from '@/components/shared/form/VeeText.vue'
+
+
+
 
 export default {
   components: {
@@ -20,7 +22,7 @@ export default {
   data: () => ({
     min: 6,
     schema: {
-      username: 'required:Username',
+      username: 'required:Username|minLength:3',
       email: 'required:Email|email',
       password: 'required:Password|minLength:3',
       confirm_password: 'required:This field|confirmed:password',

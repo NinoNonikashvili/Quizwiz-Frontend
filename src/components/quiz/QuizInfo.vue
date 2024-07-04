@@ -57,6 +57,11 @@ export default {
         <RouterLink :to="{ path: '/start-quiz/' + quiz.id }" v-if="!quiz.has_user_written">
           <ButtonLarge text="Start Quiz" bg="bg-purple-500" />
         </RouterLink>
+        <div v-else>
+          <ButtonLarge   text="Start Quiz" bg="bg-purple-500/50" class="pointer-events-none"/>
+        <p class="font-inter font-semibold text-sm leading-6 text-gray-500 my-2">You have already written this quiz!</p>
+        </div>
+        
       </div>
     </div>
   </div>

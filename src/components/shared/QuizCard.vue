@@ -27,7 +27,7 @@ export default {
     class="group p-6 bg-white w-394 flex flex-col gap-8 shadow-lg border border-transparent hover:border hover:border-black hover:rounded-lg"
   >
     <!-- CARD IMAGE -->
-    <img :src="quiz.image" alt="quiz image" class="w-full object-cover" />
+    <img :src="quiz.image" alt="quiz image" class="w-full h-[15rem] object-cover" />
     <div>
       <!-- CARD CATEGORIES -->
 
@@ -78,7 +78,7 @@ export default {
         <!-- DIFFICULTY LEVEL -->
         <div class="flex gap-3 items-center">
           <QuizCardDetailIcon
-            :bg="'bg-[' + quiz.level.bg_active + ']'"
+            :bg="quiz.level.bg_active"
             icon="QuizCardLevelIcon"
             :color="quiz.level.color_active"
           />
